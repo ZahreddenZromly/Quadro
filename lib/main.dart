@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quadro/components/navbar.dart';
+
+import 'components/navbar.dart';
 
 void main() {
   runApp(const MyApp());
