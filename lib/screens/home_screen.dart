@@ -7,8 +7,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Hello there!'),
+      body: Column(
+        children: [
+          Container(
+              width: MediaQuery.of(context).size.width * 90,
+              child: TextField()),
+        ],
       ),
     );
   }

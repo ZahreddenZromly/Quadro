@@ -26,10 +26,10 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 20,
-        title: const Text('GoogleNavBar'),
-      ),
+      // appBar: AppBar(
+      //   elevation: 20,
+      //   title: const Text('GoogleNavBar'),
+      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
