@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:quadro/screens/appointments_screen.dart';
+import 'package:quadro/screens/help_screen.dart';
+import 'package:quadro/screens/home_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -14,22 +17,9 @@ class _NavBarState extends State<NavBar> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    AppointmentsScreen(),
+    HomeScreen(),
+    HelpScreen(),
   ];
 
   @override
