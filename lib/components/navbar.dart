@@ -14,11 +14,11 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    Login(),
+    // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
     const HelpScreen(),
@@ -60,20 +60,19 @@ class _NavBarState extends State<NavBar> {
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               tabs: [
-                GButton(
-                    icon: Icons.arrow_back_ios_new,
-                    onPressed: () {
-                      const snackBar = SnackBar(
-                        backgroundColor: Colors.teal,
-                        content: Center(
-                          child: Text('Do You Want To Logout?'),
-                        ),
-                        closeIconColor: Colors.red,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }),
+                // GButton(
+                //     icon: Icons.arrow_back_ios_new,
+                //     onPressed: () {
+                //       const snackBar = SnackBar(
+                //         backgroundColor: Colors.teal,
+                //         content: Center(
+                //           child: Text('Do You Want To Logout?'),
+                //         ),
+                //         closeIconColor: Colors.red,
+                //       );
+                //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                //     }),
                 const GButton(
-
                   icon: Icons.calendar_month,
                   text: 'Appointments',
                 ),
@@ -83,13 +82,13 @@ class _NavBarState extends State<NavBar> {
                 ),
                 GButton(
                   backgroundColor: Colors.red,
-                  iconColor: Colors.red,
+                  iconColor: Colors.teal,
                   iconActiveColor: Colors.white,
                   textColor: Colors.white,
                   icon: Icons.emergency,
                   text: 'Help',
                   border: Border.all(
-                    color: const Color.fromRGBO(244, 67, 54, 1),
+                    color: Colors.teal,
                     width: 1.5,
                   ),
                 ),
