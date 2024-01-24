@@ -26,7 +26,7 @@ class _QSearchBarState extends State<QSearchBar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * .70,
+                width: MediaQuery.of(context).size.width * .65,
                 child: TextField(
                   onTap: () {
                     showSearch(

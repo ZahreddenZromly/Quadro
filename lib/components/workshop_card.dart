@@ -53,7 +53,7 @@ class WorkshopCard extends StatelessWidget {
               child: ElevatedButton(
                 child: Text(
                   'Visit',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 onPressed: () {},
                 style: ButtonStyle(
@@ -63,7 +63,7 @@ class WorkshopCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  minimumSize: MaterialStateProperty.all(Size(70, 50.0)),
+                  minimumSize: MaterialStateProperty.all(Size(80, 40.0)),
                   // iconColor: MaterialStateProperty.all(Colors.white),
                   backgroundColor: MaterialStateProperty.all(Colors.teal),
                 ),
