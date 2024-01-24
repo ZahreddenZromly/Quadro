@@ -17,16 +17,17 @@ class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static  List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     Login(),
-    AppointmentsScreen(),
-    HomeScreen(),
-    HelpScreen(),
+    const AppointmentsScreen(),
+    const HomeScreen(),
+    const HelpScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       // appBar: AppBar(
       //   elevation: 20,
@@ -54,16 +55,29 @@ class _NavBarState extends State<NavBar> {
               gap: 8,
               activeColor: Colors.black,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               tabs: [
                 GButton(
+                    icon: Icons.arrow_back_ios_new,
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        backgroundColor: Colors.teal,
+                        content: Center(
+                          child: Text('Do You Want To Logout?'),
+                        ),
+                        closeIconColor: Colors.red,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }),
+                const GButton(
+
                   icon: Icons.calendar_month,
                   text: 'Appointments',
                 ),
-                GButton(
+                const GButton(
                   icon: Icons.home,
                   text: 'Home',
                 ),

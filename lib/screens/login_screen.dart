@@ -10,7 +10,7 @@ class Login extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginPage(),
@@ -31,9 +31,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false ,
       backgroundColor: Colors.white10,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.teal,
         title: const Center(
           child: Text(
             'Sign In',
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.deepOrange.shade400,
                 ),
                 onPressed: () {
                   // Add your authentication logic here
@@ -133,6 +134,18 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                   ),
                 ),
+              ),
+            ),
+            const SizedBox(height: 10
+            ),
+            Text(
+              '-----Or Sign With-----',
+
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+
+                decoration: TextDecoration.none,
               ),
             ),
             const SizedBox(height: 40),
