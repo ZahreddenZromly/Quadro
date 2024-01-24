@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/screens/home_screen.dart';
-
-
-
+import 'package:quadro/screens/signup_screen.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -31,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false ,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white10,
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -40,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
             'Sign In',
             style: TextStyle(
               fontSize: 32,
-              color: Colors.white
+              color: Colors.white,
             ),
           ),
         ),
@@ -136,15 +134,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 10
-            ),
+            const SizedBox(height: 10),
             Text(
               '-----Or Sign With-----',
-
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16,
-
                 decoration: TextDecoration.none,
               ),
             ),
@@ -170,7 +165,6 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.only(right: 25.0),
                   ),
                   Icon(
-
                     Icons.email_rounded,
                     size: 50,
                     color: Colors.red,
@@ -191,13 +185,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const Center(
-              child: Text(
-                'Sign Up',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
+             Center(
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),
