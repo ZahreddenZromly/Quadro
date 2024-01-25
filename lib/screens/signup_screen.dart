@@ -5,7 +5,14 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Add navigation functionality here
+          },
+        ),
         backgroundColor: Colors.teal,
         title: const Center(
           child: Text(

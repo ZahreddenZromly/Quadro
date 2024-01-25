@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quadro/components/navbar.dart';
 import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/screens/signup_screen.dart';
 
@@ -30,8 +31,21 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white10,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            print('heeeeeeeere: ${MediaQuery.of(context)}');
+            // Navigator.pop(context); // Add navigation functionality here
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => NavBar(),
+            //   ),
+            // );
+          },
+        ),
         backgroundColor: Colors.teal,
         title: const Center(
           child: Text(
@@ -185,9 +199,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-             Center(
+            Center(
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

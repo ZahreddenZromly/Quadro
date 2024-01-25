@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quadro/components/category_tile.dart';
 import 'package:quadro/components/search_bar.dart';
 import 'package:quadro/components/workshop_card.dart';
+import 'package:quadro/screens/categories_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,7 +21,14 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoriesScreen(),
+                  ),
+                );
+              },
               icon: Icon(Icons.category),
             ),
             Text("Home"),
@@ -93,16 +101,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: EdgeInsets.symmetric(vertical: 16),
                   sliver: SliverFixedExtentList(
-                    itemExtent: 50,
+                    itemExtent: 55,
                     delegate: SliverChildListDelegate(
                       [
                         Container(
-                          margin: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * .04,
-                          ),
-                          height: 100,
+                          // margin: EdgeInsets.only(
+                          //   left: MediaQuery.of(context).size.width * .04,
+                          // ),
+                          // height: 100,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: 10,
@@ -121,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.only(top: 12),
+                  padding: EdgeInsets.only(top: 8),
                   sliver: SliverFixedExtentList(
                     itemExtent: 40,
                     delegate: SliverChildListDelegate(

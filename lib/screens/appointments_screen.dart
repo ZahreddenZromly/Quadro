@@ -11,19 +11,20 @@ class AppointmentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('No Appoinments yet!'),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Login(),
+              ),
+            );
+          },
+          child: Text('LogIn'),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-
         onPressed: () {
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>  Login(),
-            ),
-          );
-
           var snackBar = const SnackBar(
             backgroundColor: Colors.teal,
             content: Center(
