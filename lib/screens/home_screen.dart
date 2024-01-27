@@ -47,29 +47,24 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                SliverFixedExtentList(
-                  itemExtent: 200,
-                  delegate: SliverChildListDelegate(
-                    [
-                      Padding(
-                        padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.width * .03),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          height: 200,
-                          width: MediaQuery.of(context).size.width * .5,
-                          child: Center(
-                            child: Text(
-                              'ورشة السعداوي',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * .03),
+                  sliver: SliverToBoxAdapter(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      height: 200,
+                      width: MediaQuery.of(context).size.width * .5,
+                      child: Center(
+                        child: Text(
+                          'ورشة السعداوي',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
                 SliverFixedExtentList(
@@ -101,7 +96,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * .03,
+                      bottom: 16),
                   sliver: SliverFixedExtentList(
                     itemExtent: 55,
                     delegate: SliverChildListDelegate(
@@ -174,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 15,
                     crossAxisSpacing: 2,

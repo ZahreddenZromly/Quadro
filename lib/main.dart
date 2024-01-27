@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/screens/login_screen.dart';
+import 'package:quadro/screens/workshop_screen.dart';
 
 import 'components/navbar.dart';
 
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: Color.fromARGB(255, 232, 234, 222),
       ),
-      home:  NavBar(),
-
+      // home: NavBar(),
+      home: WorkshopScreen(),
     );
   }
 }

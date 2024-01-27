@@ -28,6 +28,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  readmore: ^2.1.0
+  url_launcher: ^6.2.4
+  flutter_phone_direct_caller: ^2.1.1
   google_nav_bar: ^5.0.6
   flutter:
     sdk: flutter
@@ -63,6 +66,7 @@ flutter:
   assets:
     - assets/
     - assets/workshops/
+    - assets/users/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
