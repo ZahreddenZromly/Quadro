@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/login_system/signup_screen.dart';
 
+import 'login_type.dart';
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -204,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (user != null) {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) =>  LoginType(),
                           ),
                         );
                       }

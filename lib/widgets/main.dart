@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quadro/login_system/login_screen.dart';
 import '../components/navbar.dart';
 import '../firebase/firebase_options.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: const Color.fromARGB(255, 232, 234, 222),
       ),
-      home:  const NavBar(),
+      home:  const Login(),
 
     );
   }
