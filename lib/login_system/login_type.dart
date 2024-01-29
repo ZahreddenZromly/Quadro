@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 
 class LoginType extends StatelessWidget {
+  const LoginType({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Two Cards Layout'),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -18,26 +18,121 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NavBar()),
+                  MaterialPageRoute(builder: (context) => const NavBar()),
                 );
               },
-              child: CardWidget(
-                title: 'LogIn As User',
-                imagePath: 'assets/card1.jpg', // Replace with your image path
+              child: Card(
+                elevation: 30 ,
+                shape: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Title for the Card
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'LogIn As User',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // Image and Text content
+                    Image.asset(
+                      'assets/workshops/workshop.jpeg',
+                      height: 100,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                    //Text('LogIn As User'),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 16.0), // Add some spacing between cards
+            const SizedBox(height: 16.0), // Add some spacing between cards
             InkWell(
               onTap: () {
-                // Navigate to Business User Login Page
+                // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NavBar()),
+                  MaterialPageRoute(builder: (context) => const NavBar()),
                 );
               },
-              child: CardWidget(
-                title: 'LogIn As Business User',
-                imagePath: 'assets/card2.jpg', // Replace with your image path
+              child: Card(
+                elevation: 15,
+                shape: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Title for the Card
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Login As Car WorkShop',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // Image and Text content
+                    Image.asset(
+                      'assets/workshops/workshop.jpeg',
+                      height: 100,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                    // Text('LogIn As User'),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0), // Add some spacing between cards
+            InkWell(
+              onTap: () {
+                // Navigate to User Login Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NavBar()),
+                );
+              },
+              child: Card(
+                elevation: 15,
+                shape: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Title for the Card
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Login As Tow Car',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // Image and Text content
+                    Image.asset(
+                      'assets/workshops/workshop.jpeg',
+                      height: 100,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                    // Text('LogIn As User'),
+                  ],
+                ),
               ),
             ),
           ],
@@ -63,7 +158,7 @@ class CardWidget extends StatelessWidget {
           ListTile(
             title: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
               ),
