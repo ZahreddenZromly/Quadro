@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
@@ -58,7 +57,7 @@ class ReviewTile extends StatelessWidget {
             children: [
               Flexible(
                 child: Container(
-                  child: ReadMoreText(
+                  child: const ReadMoreText(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                     trimLines: 2,
                     colorClickableText: Colors.pink,
@@ -81,12 +80,12 @@ class ReviewTile extends StatelessWidget {
                   child: Row(
                     children: List.generate(
                       5,
-                      (index) => Icon(Icons.star, color: Colors.yellow),
+                      (index) => const Icon(Icons.star, color: Colors.yellow),
                     ),
                   ),
                 ),
               ),
-              Text(
+              const Text(
                 ' 5.0',
                 style: TextStyle(
                   fontSize: 16,

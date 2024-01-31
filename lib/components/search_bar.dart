@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class QSearchBar extends StatefulWidget {
@@ -15,7 +14,7 @@ class _QSearchBarState extends State<QSearchBar> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: EdgeInsets.only(left: 12, right: 4),
+          padding: const EdgeInsets.only(left: 12, right: 4),
           height: 45,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
@@ -52,10 +51,9 @@ class _QSearchBarState extends State<QSearchBar> {
         ),
         SizedBox(width: MediaQuery.of(context).size.width * .02),
         ElevatedButton(
-          child: Icon(Icons.tune),
           onPressed: () {},
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(EdgeInsets.all(8)),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -66,6 +64,7 @@ class _QSearchBarState extends State<QSearchBar> {
             iconColor: MaterialStateProperty.all(Colors.white),
             backgroundColor: MaterialStateProperty.all(Colors.teal),
           ),
+          child: const Icon(Icons.tune),
         ),
       ],
     );
@@ -98,7 +97,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
           // When pressed here the query will be cleared from the search bar.

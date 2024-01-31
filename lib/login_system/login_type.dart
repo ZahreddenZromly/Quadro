@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 
+import '../screens/workshop_details.dart';
+
 class LoginType extends StatelessWidget {
   const LoginType({super.key});
 
@@ -59,7 +61,7 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const NavBar()),
+                  MaterialPageRoute(builder: (context) => MyWorkShop()),
                 );
               },
               child: Card(
@@ -146,7 +148,7 @@ class CardWidget extends StatelessWidget {
   final String title;
   final String imagePath;
 
-  CardWidget({required this.title, required this.imagePath});
+  const CardWidget({super.key, required this.title, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/components/category_tile.dart';
 import 'package:quadro/components/search_bar.dart';
@@ -25,25 +24,25 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CategoriesScreen(),
+                    builder: (context) => const CategoriesScreen(),
                   ),
                 );
               },
-              icon: Icon(Icons.category),
+              icon: const Icon(Icons.category),
             ),
-            Text("Home"),
+            const Text("Home"),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
             ),
           ],
         ),
       ),
       body: Column(
         children: [
-          SizedBox(height: 8),
-          QSearchBar(),
-          SizedBox(height: 16),
+          const SizedBox(height: 8),
+          const QSearchBar(),
+          const SizedBox(height: 16),
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -58,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       height: 200,
                       width: MediaQuery.of(context).size.width * .5,
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'ورشة السعداوي',
                           style: TextStyle(color: Colors.white),
@@ -72,14 +71,14 @@ class HomeScreen extends StatelessWidget {
                   delegate: SliverChildListDelegate(
                     [
                       Container(
-                        margin: EdgeInsets.only(top: 8),
+                        margin: const EdgeInsets.only(top: 8),
                         padding: EdgeInsets.symmetric(
                             horizontal:
                                 MediaQuery.of(context).size.width * .05),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "Most Categories",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -87,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {},
-                              child: Text("See All"),
+                              child: const Text("See All"),
                             ),
                           ],
                         ),
@@ -126,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.only(top: 8),
                   sliver: SliverFixedExtentList(
                     itemExtent: 40,
                     delegate: SliverChildListDelegate(
@@ -139,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Popular Workshops",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -147,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {},
-                                child: Text("See All"),
+                                child: const Text("See All"),
                               ),
                             ],
                           ),
@@ -167,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                                 left: MediaQuery.of(context).size.width * .03)
                             : EdgeInsets.only(
                                 right: MediaQuery.of(context).size.width * .03),
-                        child: WorkshopCard(),
+                        child: const WorkshopCard(),
                       );
                     },
                   ),

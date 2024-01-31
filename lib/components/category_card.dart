@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -8,7 +7,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.grey[100],
-      child: Column(
+      child: const Column(
         children: [
           Icon(Icons.car_crash, size: 70),
           SizedBox(height: 16),

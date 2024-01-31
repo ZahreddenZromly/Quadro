@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "22127177105",
+    "project_id": "quadrofb",
+    "storage_bucket": "quadrofb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22127177105:android:2c53b9b975dd56870cfe30",
+        "android_client_info": {
+          "package_name": "com.example.quadro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22127177105-4ith7i7spbr7hcan7rsivhg5eal39gf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwqPhubScZ5t8wecRtj6dRc4ygnARNIec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22127177105-4ith7i7spbr7hcan7rsivhg5eal39gf4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "22127177105-2iv2dlr3l35us9oef5g8287glkburbt6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quadro.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

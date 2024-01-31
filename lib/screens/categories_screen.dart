@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/components/category_card.dart';
 
@@ -20,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_circle_left_outlined, size: 40),
+            icon: const Icon(Icons.arrow_circle_left_outlined, size: 40),
           ),
         ),
         title: const Padding(
@@ -36,8 +35,8 @@ class CategoriesScreen extends StatelessWidget {
         // Other AppBar properties...
       ),
       body: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 4),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, // Number of columns
           crossAxisSpacing: 10, // Spacing between columns
           mainAxisSpacing: 10, // Spacing between rows
@@ -46,7 +45,7 @@ class CategoriesScreen extends StatelessWidget {
         itemCount: 10, // Number of items in the grid
         itemBuilder: (BuildContext context, int index) {
           // Build each grid item here
-          return CategoryCard();
+          return const CategoryCard();
         },
       ),
     );

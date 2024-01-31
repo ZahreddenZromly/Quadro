@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -43,8 +45,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   filled: true,
                   fillColor: Colors.white,
                   errorText:  isEmailValid ? null : 'Invalid email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.email),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(color: Colors.grey),

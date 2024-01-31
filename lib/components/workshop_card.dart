@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/screens/workshop_screen.dart';
 
@@ -28,7 +27,7 @@ class WorkshopCard extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Text(
               'Workshop Name',
               style: TextStyle(
@@ -39,7 +38,7 @@ class WorkshopCard extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
+              child: const Text(
                 'description description description description description',
                 style: TextStyle(fontSize: 10),
                 maxLines: null,
@@ -49,10 +48,6 @@ class WorkshopCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
             child: ElevatedButton(
-              child: Text(
-                'Visit',
-                style: TextStyle(color: Colors.white, fontSize: 15),
-              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -62,15 +57,19 @@ class WorkshopCard extends StatelessWidget {
                 );
               },
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.all(4)),
+                padding: MaterialStateProperty.all(const EdgeInsets.all(4)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                minimumSize: MaterialStateProperty.all(Size(80, 40.0)),
+                minimumSize: MaterialStateProperty.all(const Size(80, 40.0)),
                 // iconColor: MaterialStateProperty.all(Colors.white),
                 backgroundColor: MaterialStateProperty.all(Colors.teal),
+              ),
+              child: const Text(
+                'Visit',
+                style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
           )

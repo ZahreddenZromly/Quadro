@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/login_system/signup_screen.dart';
 
 import 'login_type.dart';
@@ -17,12 +16,14 @@ class Login extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -39,7 +40,7 @@ Widget build(BuildContext context) {
       future: _initializeFirebase(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return LoginPage();
+          return const LoginPage();
         }
         return const Center(
           child: CircularProgressIndicator(),
@@ -122,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                   filled: true,
                   fillColor: Colors.white,
                   errorText:  isEmailValid ? null : 'Invalid email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.email),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -206,13 +207,14 @@ class _LoginPageState extends State<LoginPage> {
                       if (user != null) {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) =>  LoginType(),
+                            builder: (context) =>  const LoginType(),
                           ),
                         );
                       }
                     }
-                    else
+                    else {
                       print('login falied');
+                    }
         
                     // Add your authentication logic here
                     // For simplicity, always navigate to the second page
@@ -289,7 +291,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
+                        builder: (context) => const SignUpScreen(),
                       ),
                     );
                   },
