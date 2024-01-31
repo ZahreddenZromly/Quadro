@@ -19,57 +19,66 @@ class _PasswordManagerState extends State<PasswordManager> {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-          Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Password Manager")
-            ],
-          ),
-            SizedBox(height: 20,),
-            MyTextField(obscureText: true,hintText: password,
-              controller:CurrentPasswordController,label: "Current Password",  ),
-            SizedBox(height: 20,),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
             Row(
-              children: [
-                Spacer(),
-                InkWell(
-                  child: Text("Forgot Password?",
-                    style: TextStyle(
-                      color: Colors.teal
-                    ),
-        
-                  ),
-                )
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Password Manager",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+              )
               ],
             ),
-            MyTextField(obscureText: true,hintText:" ",
-              controller:NewPasswordController,label: "New Password",  ),
-            SizedBox(height: 20,),
-            MyTextField(obscureText: true,hintText:" ",
-              controller:ConfirmPasswordController,label: "Confirm New Password",  ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-        
-                ),
-                onPressed: () {
-                  // Your button action goes here
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text('change Password',
-                  style: TextStyle(
-                    color: Colors.white
+              SizedBox(height: 20,),
+              MyTextField(obscureText: true,hintText: password,
+                controller:CurrentPasswordController,label: "Current Password",
+              ),
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  Spacer(),
+                  InkWell(
+                    child: Text("Forgot Password?",
+                      style: TextStyle(
+                        color: Colors.teal,
+                        fontSize: 14
+                      ),
+
+                    ),
+                  )
+                ],
+              ),
+              MyTextField(obscureText: true,hintText:" ",
+                controller:NewPasswordController,label: "New Password",  ),
+              SizedBox(height: 20,),
+              MyTextField(obscureText: true,hintText:" ",
+                controller:ConfirmPasswordController,label: "Confirm New Password",  ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+
                   ),
+                  onPressed: () {
+                    // Your button action goes here
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Text('change Password',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
