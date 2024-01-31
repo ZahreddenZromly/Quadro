@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:quadro/components/profile_options.dart';
+import 'package:quadro/screens/settings.dart';
 import 'package:quadro/screens/your_profile.dart';
 
 import '../components/profile_image.dart';
@@ -43,11 +44,14 @@ class _ProfilState extends State<Profil> {
             option: "Settings",
               arrow: Icons.arrow_forward_ios_outlined,
               onTap: (){
-                Navigator.pushNamed(context, "/");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Settings()),
+                );
               }
           ),
           Options.twoArguments("Log out",Icons.logout_rounded ,(){
-                  Navigator.pushNamed(context, "/");
+               showLogoutConfirmationDialog(context);
                 }
             ),
 
@@ -57,4 +61,39 @@ class _ProfilState extends State<Profil> {
       ),
     );
   }
+}
+Future<void> showLogoutConfirmationDialog(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Logout Confirmation'),
+        content: Text('Are you sure you want to log out?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text('Cancel',
+            style: TextStyle(
+              color: Colors.teal,
+              fontSize: 15
+            ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Perform the logout action here
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text('Logout',
+              style: TextStyle(
+              color: Colors.teal,
+              fontSize: 15
+            ),
+          ),
+          )],
+      );
+    },
+  );
 }
