@@ -3,6 +3,7 @@ import 'package:quadro/components/category_tile.dart';
 import 'package:quadro/components/search_bar.dart';
 import 'package:quadro/components/workshop_card.dart';
 import 'package:quadro/screens/categories_screen.dart';
+import 'package:quadro/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +33,12 @@ class HomeScreen extends StatelessWidget {
             ),
             const Text("Home"),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Profil()),
+                );
+              },
               icon: const Icon(Icons.person),
             ),
           ],
