@@ -1,6 +1,7 @@
 // user_signup_screen.dart
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quadro/login_system/login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -152,9 +153,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   _signUp();
+                  Future.delayed(const Duration(seconds: 3), () {
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                  });
                 },
                 child: const Text('Sign Up'),
               ),
+
             ),
           ],
         ),

@@ -50,7 +50,6 @@ class LoginType extends StatelessWidget {
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
-                    //Text('LogIn As User'),
                   ],
                 ),
               ),

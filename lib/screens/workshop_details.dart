@@ -69,13 +69,16 @@ class WorkshopCard extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AnotherPage(title: title)));
       },
-      child: Card(
-        child: Container(
-
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            title,
-            style: TextStyle(fontSize: 16.0),
+      child: Container(
+        width: 150, // Set your desired width
+        height: 100, // Set your desired height
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 16.0),
+            ),
           ),
         ),
       ),
@@ -92,7 +95,7 @@ class AnotherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details'),
+        backgroundColor: Colors.teal,
       ),
       body: Center(
         child: Text(
