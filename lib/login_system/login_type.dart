@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 
-import '../screens/workshop_details.dart';
+import '../screens/workshop_home_screen.dart';
 
 class LoginType extends StatelessWidget {
   const LoginType({super.key});
@@ -60,7 +60,7 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyWorkShop()),
+                  MaterialPageRoute(builder: (context) =>  MyWorkShop()),
                 );
               },
               child: Card(

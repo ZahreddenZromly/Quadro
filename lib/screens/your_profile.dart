@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/profile_image.dart';
 import '../components/text_field.dart';
@@ -27,12 +26,12 @@ class _YourProfileState extends State<YourProfile> {
           child: Column(
             children: [
               ProfileImage(title: "Your Profile"),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               MyTextField(hintText: userName, obscureText: false,label: "Name", controller: userNameController,),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               MyTextField(hintText: phoneNamber, obscureText: false, label: "Phone Number", controller: phoneNumberdController,),
           
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               MyTextField(hintText: Email, obscureText: false, label: "Email", controller: emailController, ),
             ],
           ),

@@ -22,8 +22,8 @@ class MyTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: TextStyle(color: Colors.black)),
-          SizedBox(height: 8),
+          Text(label, style: const TextStyle(color: Colors.black)),
+          const SizedBox(height: 8),
           TextFormField(
             initialValue: hintText,
             obscureText: obscureText,

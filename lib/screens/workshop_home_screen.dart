@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Workshop_Details_screen.dart';
+
 class MyWorkShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,8 @@ class MyWorkShop extends StatelessWidget {
                   title: 'WorkShop User Main',
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(height: 110),
                     MyDetails(
@@ -97,6 +101,7 @@ class BackGroundContainer extends StatelessWidget {
   }
 }
 
+// Inside your existing code
 class MyDetails extends StatelessWidget {
   final String title;
 
@@ -106,9 +111,13 @@ class MyDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigate to another page when the card is tapped
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AnotherPage(title: title)));
+        // Navigate to the WorkshopDetailsPage when the card is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WorkshopDetailsPage(),
+          ),
+        );
       },
       child: Center(
         child: Card(
@@ -132,6 +141,7 @@ class MyDetails extends StatelessWidget {
     );
   }
 }
+
 
 class WorkshopCard extends StatelessWidget {
   final String title;
@@ -192,3 +202,5 @@ class AnotherPage extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileImage extends StatelessWidget {
   String title;
-    ProfileImage({required this.title});
+    ProfileImage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +16,12 @@ class ProfileImage extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ],
           ),
-          SizedBox(height: 20,),
-          ImagePickers(),
+          const SizedBox(height: 20,),
+          const ImagePickers(),
         ],
       ),
     );
@@ -30,7 +29,7 @@ class ProfileImage extends StatelessWidget {
 }
 class ImagePickers extends StatefulWidget {
 
-  ImagePickers({super.key});
+  const ImagePickers({super.key});
 
   @override
   State<ImagePickers> createState() => _ImagePickerState();
@@ -65,7 +64,7 @@ class _ImagePickerState extends State<ImagePickers> {
                               radius: 80,
                               backgroundImage: _image != null ? FileImage(_image!) : null,
                               child: _image == null
-                                  ? Icon(
+                                  ? const Icon(
                                 Icons.person,
                                 size: 80,
                                 color: Colors.white,
@@ -89,10 +88,10 @@ class _ImagePickerState extends State<ImagePickers> {
                                 ),
                               ),
                               child: IconButton(
-                                icon: Icon(Icons.edit),
+                                icon: const Icon(Icons.edit),
                                 onPressed: getImage,
                                 color: Colors.white,
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
 
                                 ),
                               ),

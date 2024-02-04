@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../login_system/login_screen.dart';
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -16,14 +17,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _loadSplash() async {
-    await Future.delayed(Duration(seconds: 4));
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
 

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:quadro/components/profile_options.dart';
@@ -26,7 +25,7 @@ class _ProfilState extends State<Profil> {
           child: Column(
         children: [
           ProfileImage(title: " Profile"),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Options(
               arrow: Icons.arrow_forward_ios_outlined,
               icon: Icons.account_circle_rounded,
@@ -34,7 +33,7 @@ class _ProfilState extends State<Profil> {
              onTap: (){
                Navigator.push(
                  context,
-                 MaterialPageRoute(builder: (context) => YourProfile()),
+                 MaterialPageRoute(builder: (context) => const YourProfile()),
                );
 
                  }
@@ -46,7 +45,7 @@ class _ProfilState extends State<Profil> {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Settings()),
+                  MaterialPageRoute(builder: (context) => const Settings()),
                 );
               }
           ),
@@ -67,14 +66,13 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Logout Confirmation'),
-        content: Text('Are you sure you want to log out?'),
+        title: const Text('Logout Confirmation'),
+        content: const Text('Are you sure you want to log out?'),
         actions: <Widget>[
           TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-            },
-            child: Text('Cancel',
+            onPressed: () async => await FirebaseAuth.instance.signOut(),
+
+            child: const Text('Cancel',
             style: TextStyle(
               color: Colors.teal,
               fontSize: 15
@@ -86,7 +84,7 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
               // Perform the logout action here
               Navigator.of(context).pop(); // Close the dialog
             },
-            child: Text('Logout',
+            child: const Text('Logout',
               style: TextStyle(
               color: Colors.teal,
               fontSize: 15
