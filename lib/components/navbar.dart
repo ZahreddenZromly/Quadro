@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
-import 'package:quadro/screens/help_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
+import 'package:quadro/screens/towing_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -19,7 +19,7 @@ class _NavBarState extends State<NavBar> {
     // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
-    const HelpScreen(),
+    TowingScreen(),
   ];
 
   @override
@@ -79,7 +79,7 @@ class _NavBarState extends State<NavBar> {
                   text: 'Home',
                 ),
                 GButton(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.teal,
                   iconColor: Colors.teal,
                   iconActiveColor: Colors.white,
                   textColor: Colors.white,
