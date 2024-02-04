@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 
 class Options extends StatelessWidget {
   final IconData? icon;
   final IconData? arrow;
   final String option;
   final VoidCallback? onTap;
-  Options({required this.icon,required this.option , required this.onTap,  required this.arrow});
-  Options.twoArguments( this.option , this.icon , this.onTap ): arrow = null;
+  const Options({super.key, required this.icon,required this.option , required this.onTap,  required this.arrow});
+  const Options.twoArguments( this.option , this.icon , this.onTap, {super.key} ): arrow = null;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +23,10 @@ class Options extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(option,
-                  style: TextStyle(fontSize: 20, ),
+                  style: const TextStyle(fontSize: 20, ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Icon(arrow,
                 color:Colors.teal
             ),

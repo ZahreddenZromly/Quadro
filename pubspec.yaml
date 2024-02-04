@@ -32,8 +32,12 @@ dependencies:
   url_launcher: ^6.2.4
   flutter_phone_direct_caller: ^2.1.1
   google_nav_bar: ^5.0.6
+<<<<<<< HEAD
   flutter_form_builder: 
   flutter_inner_shadow: ^0.0.1
+=======
+  flutter_rating_bar: ^4.0.0
+>>>>>>> d99a1332decfe87ff2983190722a28bf33979fd6
   flutter:
     sdk: flutter
   image_picker:

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 
@@ -23,7 +22,7 @@ class _PasswordManagerState extends State<PasswordManager> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-            Row(
+            const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Password Manager",
@@ -33,12 +32,12 @@ class _PasswordManagerState extends State<PasswordManager> {
               )
               ],
             ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               MyTextField(obscureText: true,hintText: password,
                 controller:CurrentPasswordController,label: "Current Password",
               ),
-              SizedBox(height: 20,),
-              Row(
+              const SizedBox(height: 20,),
+              const Row(
                 children: [
                   Spacer(),
                   InkWell(
@@ -54,21 +53,21 @@ class _PasswordManagerState extends State<PasswordManager> {
               ),
               MyTextField(obscureText: true,hintText:" ",
                 controller:NewPasswordController,label: "New Password",  ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               MyTextField(obscureText: true,hintText:" ",
                 controller:ConfirmPasswordController,label: "Confirm New Password",  ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
 
                   ),
                   onPressed: () {
                     // Your button action goes here
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(18.0),
                     child: Text('change Password',
                     style: TextStyle(
                       color: Colors.white

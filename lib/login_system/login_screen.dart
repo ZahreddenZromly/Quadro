@@ -78,14 +78,14 @@ class _LoginPageState extends State<LoginPage> {
         // Set appropriate error messages for email/password
         if (e.code == 'user-not-found') {
           ScaffoldMessenger.of(context).showSnackBar(
-             SnackBar(
+             const SnackBar(
               content: Text('Incorrect email.'),
               backgroundColor: Colors.red,
             ),
           );
         } else if (e.code == 'wrong-password') {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Incorrect password.'),
               backgroundColor: Colors.red,
             ),
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: InkWell(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.indigo[600], // Set the background color to indigo
+                      backgroundColor: Colors.indigo[600], // Set the background color to indigo
                     ),
                     onPressed: () async {
                       if (isEmailValid && isPasswordValid) {

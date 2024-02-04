@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/screens/password_manager.dart';
-import '../components/profile_image.dart';
-import '../components/text_field.dart';
 import 'package:quadro/components/profile_options.dart';
 
 class Settings extends StatelessWidget {
@@ -15,7 +12,7 @@ class Settings extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Settings")
@@ -51,14 +48,14 @@ Future<void> showDeleteConfirmationDialog(BuildContext context) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Delete account  Confirmation'),
-        content: Text('Are you sure you want to Delete your account?'),
+        title: const Text('Delete account  Confirmation'),
+        content: const Text('Are you sure you want to Delete your account?'),
         actions: <Widget>[
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
             },
-            child: Text('Cancel',
+            child: const Text('Cancel',
               style: TextStyle(
                   color: Colors.teal,
                   fontSize: 15
@@ -70,7 +67,7 @@ Future<void> showDeleteConfirmationDialog(BuildContext context) async {
               // Perform the logout action here
               Navigator.of(context).pop(); // Close the dialog
             },
-            child: Text('Delete',
+            child: const Text('Delete',
               style: TextStyle(
                   color: Colors.teal,
                   fontSize: 15
