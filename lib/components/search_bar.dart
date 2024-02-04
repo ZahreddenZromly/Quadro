@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quadro/components/filter_component.dart';
 
 class QSearchBar extends StatefulWidget {
   const QSearchBar({super.key});
@@ -51,7 +52,13 @@ class _QSearchBarState extends State<QSearchBar> {
         ),
         SizedBox(width: MediaQuery.of(context).size.width * .02),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return FilterComponent();
+                });
+          },
           style: ButtonStyle(
             padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(

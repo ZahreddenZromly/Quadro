@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:quadro/components/image_picker.dart';
 
 class ProfileImage extends StatelessWidget {
   String title;
+<<<<<<< HEAD
+  ProfileImage({required this.title});
+=======
     ProfileImage({super.key, required this.title});
+>>>>>>> d99a1332decfe87ff2983190722a28bf33979fd6
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +25,22 @@ class ProfileImage extends StatelessWidget {
               ),
             ],
           ),
+<<<<<<< HEAD
+          SizedBox(
+            height: 20,
+          ),
+          ImagePickers(),
+=======
           const SizedBox(height: 20,),
           const ImagePickers(),
+>>>>>>> d99a1332decfe87ff2983190722a28bf33979fd6
         ],
       ),
     );
   }
 }
+<<<<<<< HEAD
+=======
 class ImagePickers extends StatefulWidget {
 
   const ImagePickers({super.key});
@@ -108,3 +122,4 @@ class _ImagePickerState extends State<ImagePickers> {
     );
   }
 }
+>>>>>>> d99a1332decfe87ff2983190722a28bf33979fd6
