@@ -4,25 +4,94 @@ class MyWorkShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          MyDetails(title: 'My WorkShop'),
-          const SizedBox(height: 16.0), // Add spacing between cards
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 2, // Number of columns in the grid
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                WorkshopCard(title: 'السيارات قيد التصليح'),
-                WorkshopCard(title: 'السيارات التي لم يتم قبولها'),
-                WorkshopCard(title: 'السيارات التي تم اصلاحها'),
-                WorkshopCard(title: 'اااااااااااااااااااااا'),
+                BackGroundContainer(
+                  title: 'WorkShop User Main',
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 110),
+                    MyDetails(
+                      title: 'My WorkShop',
+                    ),
+                  ],
+                ),
               ],
             ),
+
+            const SizedBox(height: 30.0), // Add spacing between cards
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  WorkshopCard(
+                    title: 'السيارات قيد التصليح',
+                    iconData: Icons.work_history_outlined, // Replace with the desired icon
+                  ),
+                  WorkshopCard(
+                    title: 'السيارات التي لم يتم قبولها',
+                    iconData: Icons.downloading_outlined, // Replace with the desired icon
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16.0), // Add spacing between rows
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  WorkshopCard(
+                    title: 'السيارات التي تم اصلاحها',
+                    iconData: Icons.done_all_outlined, // Replace with the desired icon
+                  ),
+                  WorkshopCard(
+                    title: 'اااااااااااااااااااااا',
+                    iconData: Icons.build, // Replace with the desired icon
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BackGroundContainer extends StatelessWidget {
+  final String title;
+
+  BackGroundContainer({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        // Adjust padding as needed
+        height: 180,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+          color: Colors.teal,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0), // Adjust the radius as needed
+            bottomRight: Radius.circular(20.0), // Adjust the radius as needed
           ),
-        ],
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white, // You can adjust the text color
+              fontSize: 20, // You can adjust the font size
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -41,14 +110,22 @@ class MyDetails extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AnotherPage(title: title)));
       },
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(16.0),
-          width: double.infinity,
-          height: 150,
-          child: Text(
-            title,
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+      child: Center(
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            width: 350,
+            height: 180,
+            child: Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -58,8 +135,9 @@ class MyDetails extends StatelessWidget {
 
 class WorkshopCard extends StatelessWidget {
   final String title;
+  final IconData iconData; // Add this line to store the icon data
 
-  WorkshopCard({required this.title});
+  WorkshopCard({required this.title, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +149,22 @@ class WorkshopCard extends StatelessWidget {
       },
       child: Container(
         width: 150, // Set your desired width
-        height: 100, // Set your desired height
+        height: 150, // Set your desired height
         child: Card(
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 16.0),
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconData,
+                size: 48.0, // Adjust the icon size as needed
+                color: Colors.teal, // Adjust the icon color as needed
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                title,
+                style: TextStyle(fontSize: 12.0),
+              ),
+            ],
           ),
         ),
       ),

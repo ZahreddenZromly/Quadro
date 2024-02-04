@@ -5,6 +5,7 @@ import 'package:quadro/login_system/login_screen.dart';
 import 'package:quadro/screens/appointment_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
 import '../firebase/firebase_options.dart';
+import '../screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: const Color.fromARGB(255, 232, 234, 222),
       ),
-      home: RequestAppointmentScreen(),
+      home: SplashScreen(),
+// <<<<<<< HEAD:lib/main.dart
+      // home: RequestAppointmentScreen(),
+// =======
+
+// >>>>>>> 08c83b1e4cc8aa4f443ff836f3794aad02303ffa:lib/widgets/main.dart
     );
   }
 }

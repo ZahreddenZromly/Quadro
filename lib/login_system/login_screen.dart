@@ -58,23 +58,46 @@ class _LoginPageState extends State<LoginPage> {
   bool isEmailValid = true;
   bool isPasswordValid = true;
 
-  static Future<User?> LoginUsinfEmailPassword(
-      {required String email,
-      required String password,
-      required BuildContext context}) async {
+
+  static Future<User?> LoginUsinfEmailPassword({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
+
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user not found') {
-        print('no user found for tha email');
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        // Set appropriate error messages for email/password
+        if (e.code == 'user-not-found') {
+          ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(
+              content: Text('Incorrect email.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        } else if (e.code == 'wrong-password') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Incorrect password.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
+
     return user;
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -170,12 +193,12 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    isPasswordValid = isValidPassword(value);
-                  });
-                },
               ),
+              if (!isPasswordValid)
+                const Text(
+                  'Invalid password',
+                  style: TextStyle(color: Colors.red),
+                ),
               const SizedBox(height: 10),
               const Row(
                 children: [
@@ -193,88 +216,45 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange.shade400,
-                  ),
-                  onPressed: () async {
-                    if (isEmailValid && isPasswordValid) {
-                      User? user = await LoginUsinfEmailPassword(
-                          email: (_usernameController.text),
+                child: InkWell(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.indigo[600], // Set the background color to indigo
+                    ),
+                    onPressed: () async {
+                      if (isEmailValid && isPasswordValid) {
+                        User? user = await LoginUsinfEmailPassword(
+                          email: _usernameController.text,
                           password: _passwordController.text,
-                          context: context);
-                      print(user);
-                      if (user != null) {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) =>  const LoginType(),
-                          ),
+                          context: context,
                         );
+                  
+                        if (user != null) {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const LoginType(),
+                            ),
+                          );
+                        } else {
+                          // Display a general error message here if needed
+                          print('Login failed. Incorrect email or password.');
+                        }
+                      } else {
+                        // Display a general error message for invalid email/password
+                        print('Login failed. Invalid email or password.');
                       }
-                    }
-                    else {
-                      print('login falied');
-                    }
-        
-                    // Add your authentication logic here
-                    // For simplicity, always navigate to the second page
-        
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => HomeScreen(),
-                    //   ),
-                    // );
-                  },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              // const Text(
-              //   '-----Or Sign With-----',
-              //   style: TextStyle(
-              //     color: Colors.grey,
-              //     fontSize: 16,
-              //     decoration: TextDecoration.none,
-              //   ),
-              // ),
-              // const SizedBox(height: 40),
-              // const Center(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     crossAxisAlignment: CrossAxisAlignment.center,
-              //     children: [
-              //       Icon(
-              //         Icons.facebook_rounded,
-              //         size: 50,
-              //         color: Colors.blue,
-              //       ),
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 25.0),
-              //       ),
-              //       Icon(
-              //         Icons.apple_rounded,
-              //         size: 50,
-              //       ),
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 25.0),
-              //       ),
-              //       Icon(
-              //         Icons.email_rounded,
-              //         size: 50,
-              //         color: Colors.red,
-              //       ),
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 25.0),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+
               const SizedBox(height: 20),
               const Center(
                 child: Text(
