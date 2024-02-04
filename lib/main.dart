@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quadro/screens/towing%20_cars_owners.dart';
 import 'firebase/firebase_options.dart';
 import 'screens/splash.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: const Color.fromARGB(255, 232, 234, 222),
       ),
-      home: const SplashScreen(),
+      home:  MyTowing(),
 
     );
   }
