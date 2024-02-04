@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 import 'package:quadro/login_system/login_screen.dart';
+import 'package:quadro/screens/appointment_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
 import '../firebase/firebase_options.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: const Color.fromARGB(255, 232, 234, 222),
       ),
-      home: NavBar(),
+      home: RequestAppointmentScreen(),
     );
   }
 }
