@@ -49,9 +49,18 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, size: 30),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 48),
+        padding: EdgeInsets.only(top: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -204,7 +213,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
               ),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -261,7 +270,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
             ),
             // if (_image != null) Image.file(_image!),
 
-            SizedBox(height: 16),
+            SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
                 // Navigator.push(
@@ -278,7 +287,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                minimumSize: MaterialStateProperty.all(const Size(362, 60.0)),
+                minimumSize: MaterialStateProperty.all(const Size(350, 60.0)),
                 // iconColor: MaterialStateProperty.all(Colors.white),
                 backgroundColor: MaterialStateProperty.all(Colors.teal),
               ),

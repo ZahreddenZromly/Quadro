@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_circle_left_outlined, size: 40),
+            icon: const Icon(Icons.arrow_back, size: 30),
           ),
         ),
         title: const Padding(

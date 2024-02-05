@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,10 +20,60 @@ class TowingScreen extends StatefulWidget {
 }
 
 class _TowingScreenState extends State<TowingScreen> {
-  // final ChipThemeData customTheme = ChipThemeData.fromDefaults(
-  //   shape: RoundedRectangleBorder(side: BorderSide.none),
-  // );
+  final db = FirebaseFirestore.instance;
+  List<String> brands = [];
+
+  Future<void> getCarBrands() async {
+    try {
+      final brandsSnapshot = await db.collection('Car Brands').get();
+      brands = brandsSnapshot.docs.map((doc) => doc['name'] as String).toList();
+      setState(() {});
+    } catch (error) {
+      // Handle errors gracefully (e.g., display an error message)
+    }
+    print('$brands[0]');
+  }
+
+  List<String> models = [];
+
+  Future<void> getCarModels(String selectedBrand) async {
+    try {
+      final modelsSnapshot = await db
+          .collection('Car Brands')
+          .doc(selectedBrand)
+          .collection('models')
+          .get();
+      models = modelsSnapshot.docs.map((doc) => doc['name'] as String).toList();
+      selectedModel = models[0];
+      setState(() {});
+    } catch (error) {
+      // Handle errors gracefully
+    }
+    // print('models: $selectedBrand $models');
+  }
+
+  String? selectedBrand;
+  String? selectedModel;
+  int _selectedType = -1;
+  Future<void> _fetchData() async {
+    try {
+      await getCarBrands();
+      selectedBrand = brands[0]; // Set initial brand after fetching
+      await getCarModels(selectedBrand!);
+    } catch (error) {
+      // Handle errors gracefully
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  final TextEditingController descriptionController = TextEditingController();
   File? _image;
+
   Future getImage() async {
     final XFile? image =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -33,20 +84,12 @@ class _TowingScreenState extends State<TowingScreen> {
     }
   }
 
-  List<String> brands = ['Toyota', 'Hyundai'];
-  late String selectedBrand;
-  int _selectedType = -1;
-
-  final TextEditingController descriptionController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    selectedBrand = brands[0];
-  }
-
   @override
   Widget build(BuildContext context) {
+    // if (brands.isEmpty) {
+    //   return Center(child: CircularProgressIndicator()); // Show loading
+    // }
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
@@ -70,6 +113,7 @@ class _TowingScreenState extends State<TowingScreen> {
               ),
             ),
             const SizedBox(height: 16),
+
             const SizedBox(
               width: 350,
               child: Row(
@@ -198,14 +242,14 @@ class _TowingScreenState extends State<TowingScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       dropdownColor: Colors.grey[100],
-                      icon: Icon(Icons.expand_more),
+                      icon: const Icon(Icons.expand_more),
                       isExpanded: true,
                       value: selectedBrand, // Initially selected option
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedBrand = newValue!;
-                        });
-                      },
+                      onChanged: (newBrand) => setState(() {
+                        selectedBrand = newBrand!;
+                        getCarModels(newBrand);
+                        // selectedModel = null; // Reset selected model
+                      }),
 
                       style: TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
@@ -238,18 +282,15 @@ class _TowingScreenState extends State<TowingScreen> {
                       // hint: Text('brand'),
                       isExpanded: true,
                       // itemHeight: 80,
-                      value: selectedBrand, // Initially selected option
-                      onChanged: (String? newValue) {
-                        // Handle dropdown selection here
-                        setState(() {
-                          selectedBrand = newValue!;
-                        });
-                      },
+                      value: selectedModel, // Initially selected option
+                      onChanged: (newModel) => setState(() {
+                        selectedModel = newModel!;
+                      }),
 
                       style: TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
-                          brands.map<DropdownMenuItem<String>>((String value) {
+                          models.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Center(child: Text(value)),
@@ -309,7 +350,7 @@ class _TowingScreenState extends State<TowingScreen> {
                     // height: 50,
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                        border: Border.all(width: .5, color: Colors.black38),
+                        border: Border.all(width: 1, color: Colors.black38),
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
@@ -362,7 +403,7 @@ class _TowingScreenState extends State<TowingScreen> {
                 height: 50,
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
-                    border: Border.all(width: .5, color: Colors.black38),
+                    border: Border.all(width: 1, color: Colors.black38),
                     borderRadius: BorderRadius.circular(8)),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
