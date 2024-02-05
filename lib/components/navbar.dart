@@ -4,6 +4,8 @@ import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
 
+import '../chat_system/chat_details.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -19,7 +21,9 @@ class _NavBarState extends State<NavBar> {
     // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
+    ChatDetails(),
     TowingScreen(),
+
   ];
 
   @override
@@ -77,6 +81,10 @@ class _NavBarState extends State<NavBar> {
                 const GButton(
                   icon: Icons.home,
                   text: 'Home',
+                ),
+                const GButton(
+                  icon: Icons.chat,
+                  text: 'chat',
                 ),
                 GButton(
                   backgroundColor: Colors.teal,

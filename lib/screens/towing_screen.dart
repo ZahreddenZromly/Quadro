@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:quadro/components/image_picker.dart';
@@ -54,7 +52,7 @@ class _TowingScreenState extends State<TowingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 350,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

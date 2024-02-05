@@ -1,22 +1,29 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:io';
-
 import 'package:quadro/components/profile_options.dart';
+import 'package:quadro/login_system/auth_service.dart';
 import 'package:quadro/screens/settings.dart';
 import 'package:quadro/screens/your_profile.dart';
-
 import '../components/profile_image.dart';
+import '../login_system/auth_service.dart';
 
-class Profil extends StatefulWidget {
-  const Profil({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<Profil> createState() => _ProfilState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _ProfilState extends State<Profil> {
+
+class _ProfileState extends State<Profile> {
   File? _image;
+
+  void signOut(){
+    final authService =Provider.of<AuthService>(context , listen: false);
+    authService.SignOut();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,3 +102,4 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
     },
   );
 }
+
