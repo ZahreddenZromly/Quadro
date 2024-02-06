@@ -1,9 +1,7 @@
 // user_signup_screen.dart
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:quadro/login_system/auth_service.dart';
-import 'package:quadro/login_system/login_screen.dart';
 
 import '../components/my_button.dart';
 import '../components/my_text_feild.dart';

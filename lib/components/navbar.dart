@@ -3,9 +3,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
+import 'package:quadro/towing_user/request_towing.dart';
 
 import '../chat_system/chat_details.dart';
-import '../towing_user/request_towing.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -22,8 +22,8 @@ class _NavBarState extends State<NavBar> {
     // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
-    ChatDetails(),
-    RequestTowingPage(),
+    const ChatDetails(),
+     RequestTowingPage(),
 
   ];
 
@@ -32,10 +32,6 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   elevation: 20,
-      //   title: const Text('GoogleNavBar'),
-      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

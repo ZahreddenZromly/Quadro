@@ -56,7 +56,7 @@ class _QSearchBarState extends State<QSearchBar> {
             showModalBottomSheet(
                 context: context,
                 builder: (BuildContext context) {
-                  return FilterComponent();
+                  return const FilterComponent();
                 });
           },
           style: ButtonStyle(

@@ -1,11 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quadro/components/my_button.dart';
 import 'package:quadro/components/my_text_feild.dart';
 import 'package:quadro/login_system/auth_service.dart';
-import 'package:quadro/login_system/signup_screen.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -64,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
                 //welcome back message
                 const Text(
-                  'Welcome back you\`ve been missed',
+                  'Welcome back you`ve been missed',
                   style: TextStyle(
                     fontSize: 16,
                   ),

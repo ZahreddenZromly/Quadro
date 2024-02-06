@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:quadro/components/image_picker.dart';
 
 class ProfileImage extends StatelessWidget {
   String title;
-  ProfileImage({required this.title});
+  ProfileImage({super.key, required this.title});
 
 
 
@@ -24,10 +23,10 @@ class ProfileImage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          ImagePickers(),
+          const ImagePickers(),
           const SizedBox(height: 20,),
 
           const SizedBox(height: 20,),

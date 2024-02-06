@@ -1,16 +1,13 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:quadro/components/image_picker.dart';
-import 'package:quadro/my_flutter_app_icons.dart';
 
 enum towingType { Tug, Pull }
 
 class TowingScreen extends StatefulWidget {
-  TowingScreen({super.key});
+  const TowingScreen({super.key});
 
   @override
   State<TowingScreen> createState() => _TowingScreenState();
@@ -48,7 +45,7 @@ class _TowingScreenState extends State<TowingScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 48),
+        padding: const EdgeInsets.only(top: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -92,7 +89,7 @@ class _TowingScreenState extends State<TowingScreen> {
                     offset: const Offset(3, 2))
               ],
               child: Container(
-                margin: EdgeInsets.only(top: 8),
+                margin: const EdgeInsets.only(top: 8),
                 width: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -115,21 +112,21 @@ class _TowingScreenState extends State<TowingScreen> {
                                   blurRadius: 7)
                             ]),
                             child: ChoiceChip(
-                              labelPadding: EdgeInsets.symmetric(
+                              labelPadding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 8),
 
                               backgroundColor: Colors.grey[100],
                               showCheckmark: false,
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               label: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.car_crash,
                                     size: 30,
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Text(
-                                    '${towingType.values[index].name}',
+                                    towingType.values[index].name,
                                     style: TextStyle(
                                       letterSpacing: 1,
                                       fontSize: 22,
@@ -157,7 +154,7 @@ class _TowingScreenState extends State<TowingScreen> {
                           ),
                         );
                       },
-                    ).toList(),
+                    ),
                   ],
                 ),
               ),
@@ -196,7 +193,7 @@ class _TowingScreenState extends State<TowingScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       dropdownColor: Colors.grey[100],
-                      icon: Icon(Icons.expand_more),
+                      icon: const Icon(Icons.expand_more),
                       isExpanded: true,
                       value: selectedBrand, // Initially selected option
                       onChanged: (String? newValue) {
@@ -205,7 +202,7 @@ class _TowingScreenState extends State<TowingScreen> {
                         });
                       },
 
-                      style: TextStyle(fontSize: 22, color: Colors.black),
+                      style: const TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
                           brands.map<DropdownMenuItem<String>>((String value) {
@@ -232,7 +229,7 @@ class _TowingScreenState extends State<TowingScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       dropdownColor: Colors.grey[100],
-                      icon: Icon(Icons.expand_more),
+                      icon: const Icon(Icons.expand_more),
                       // hint: Text('brand'),
                       isExpanded: true,
                       // itemHeight: 80,
@@ -244,7 +241,7 @@ class _TowingScreenState extends State<TowingScreen> {
                         });
                       },
 
-                      style: TextStyle(fontSize: 22, color: Colors.black),
+                      style: const TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
                           brands.map<DropdownMenuItem<String>>((String value) {
@@ -277,8 +274,8 @@ class _TowingScreenState extends State<TowingScreen> {
             ),
             Container(
               width: 350,
-              margin: EdgeInsets.all(8),
-              padding: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -296,7 +293,7 @@ class _TowingScreenState extends State<TowingScreen> {
               ),
             ),
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -305,7 +302,7 @@ class _TowingScreenState extends State<TowingScreen> {
                   child: Container(
                     width: 350,
                     // height: 50,
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         border: Border.all(width: .5, color: Colors.black38),
                         borderRadius: BorderRadius.circular(8)),
@@ -330,8 +327,8 @@ class _TowingScreenState extends State<TowingScreen> {
                               Container(
                                 height: 100,
                                 width: 100,
-                                margin: EdgeInsets.only(top: 12),
-                                decoration: BoxDecoration(
+                                margin: const EdgeInsets.only(top: 12),
+                                decoration: const BoxDecoration(
                                   // borderRadius: BorderRadius.circular(0),
                                   color: Colors.teal,
                                 ),
@@ -358,7 +355,7 @@ class _TowingScreenState extends State<TowingScreen> {
               child: Container(
                 width: 350,
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                     border: Border.all(width: .5, color: Colors.black38),
                     borderRadius: BorderRadius.circular(8)),
@@ -378,7 +375,7 @@ class _TowingScreenState extends State<TowingScreen> {
               ),
             ),
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // Navigator.push(

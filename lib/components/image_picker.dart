@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickers extends StatefulWidget {
-  ImagePickers({super.key});
+  const ImagePickers({super.key});
 
   @override
   State<ImagePickers> createState() => _ImagePickerState();
@@ -36,7 +36,7 @@ class _ImagePickerState extends State<ImagePickers> {
                     radius: 80,
                     backgroundImage: _image != null ? FileImage(_image!) : null,
                     child: _image == null
-                        ? Icon(
+                        ? const Icon(
                             Icons.person,
                             size: 80,
                             color: Colors.white,
@@ -59,10 +59,10 @@ class _ImagePickerState extends State<ImagePickers> {
                     ),
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: getImage,
                     color: Colors.white,
-                    style: ButtonStyle(),
+                    style: const ButtonStyle(),
                   ),
                 ),
               ),

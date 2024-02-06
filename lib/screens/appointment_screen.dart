@@ -1,17 +1,13 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:quadro/components/image_picker.dart';
-import 'package:quadro/my_flutter_app_icons.dart';
 
 enum towingType { Tug, Pull }
 
 class RequestAppointmentScreen extends StatefulWidget {
-  RequestAppointmentScreen({super.key});
+  const RequestAppointmentScreen({super.key});
 
   @override
   State<RequestAppointmentScreen> createState() =>
@@ -35,7 +31,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
 
   List<String> brands = ['Toyota', 'Hyundai'];
   late String selectedBrand;
-  int _selectedType = -1;
+  final int _selectedType = -1;
 
   final TextEditingController descriptionController = TextEditingController();
 
@@ -50,11 +46,11 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 48),
+        padding: const EdgeInsets.only(top: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 350,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +99,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       dropdownColor: Colors.grey[100],
-                      icon: Icon(Icons.expand_more),
+                      icon: const Icon(Icons.expand_more),
                       isExpanded: true,
                       value: selectedBrand, // Initially selected option
                       onChanged: (String? newValue) {
@@ -112,7 +108,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                         });
                       },
 
-                      style: TextStyle(fontSize: 22, color: Colors.black),
+                      style: const TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
                           brands.map<DropdownMenuItem<String>>((String value) {
@@ -139,7 +135,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       dropdownColor: Colors.grey[100],
-                      icon: Icon(Icons.expand_more),
+                      icon: const Icon(Icons.expand_more),
                       // hint: Text('brand'),
                       isExpanded: true,
                       // itemHeight: 80,
@@ -151,7 +147,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                         });
                       },
 
-                      style: TextStyle(fontSize: 22, color: Colors.black),
+                      style: const TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
                           brands.map<DropdownMenuItem<String>>((String value) {
@@ -184,8 +180,8 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
             ),
             Container(
               width: 350,
-              margin: EdgeInsets.all(8),
-              padding: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -203,7 +199,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
               ),
             ),
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -212,7 +208,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                   child: Container(
                     width: 350,
                     // height: 50,
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         border: Border.all(width: 1, color: Colors.black38),
                         borderRadius: BorderRadius.circular(8)),
@@ -237,8 +233,8 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
                               Container(
                                 height: 100,
                                 width: 100,
-                                margin: EdgeInsets.only(top: 12),
-                                decoration: BoxDecoration(
+                                margin: const EdgeInsets.only(top: 12),
+                                decoration: const BoxDecoration(
                                   // borderRadius: BorderRadius.circular(0),
                                   color: Colors.teal,
                                 ),
@@ -260,7 +256,7 @@ class _RequestAppointmentScreenState extends State<RequestAppointmentScreen> {
             ),
             // if (_image != null) Image.file(_image!),
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // Navigator.push(

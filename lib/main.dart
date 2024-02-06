@@ -11,6 +11,8 @@ import 'package:quadro/screens/appointment_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
 import '../firebase/firebase_options.dart';
 import '../screens/splash.dart';
+import 'firebase/firebase_options.dart';
+import 'screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +38,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: const Color.fromARGB(255, 232, 234, 222),
       ),
-
       home: const AuthGate(),
     );
   }

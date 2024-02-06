@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'Workshop_Details_screen.dart';
 
 class MyWorkShop extends StatelessWidget {
+  const MyWorkShop({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,7 +21,7 @@ class MyWorkShop extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 110),
+                    SizedBox(height: 110),
                     MyDetails(
                       title: 'My WorkShop',
                     ),
@@ -28,7 +30,7 @@ class MyWorkShop extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 30.0), // Add spacing between cards
+            SizedBox(height: 30.0), // Add spacing between cards
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -44,7 +46,7 @@ class MyWorkShop extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 16.0), // Add spacing between rows
+            SizedBox(height: 16.0), // Add spacing between rows
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,7 +72,7 @@ class MyWorkShop extends StatelessWidget {
 class BackGroundContainer extends StatelessWidget {
   final String title;
 
-  BackGroundContainer({required this.title});
+  const BackGroundContainer({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,7 @@ class BackGroundContainer extends StatelessWidget {
 class MyDetails extends StatelessWidget {
   final String title;
 
-  MyDetails({required this.title});
+  const MyDetails({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -115,14 +117,14 @@ class MyDetails extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => WorkshopDetailsPage(),
+            builder: (context) => const WorkshopDetailsPage(),
           ),
         );
       },
       child: Center(
         child: Card(
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             width: 350,
             height: 180,
             child: Center(
@@ -147,7 +149,7 @@ class WorkshopCard extends StatelessWidget {
   final String title;
   final IconData iconData; // Add this line to store the icon data
 
-  WorkshopCard({required this.title, required this.iconData});
+  const WorkshopCard({super.key, required this.title, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +159,7 @@ class WorkshopCard extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AnotherPage(title: title)));
       },
-      child: Container(
+      child: SizedBox(
         width: 150, // Set your desired width
         height: 150, // Set your desired height
         child: Card(
@@ -169,10 +171,10 @@ class WorkshopCard extends StatelessWidget {
                 size: 48.0, // Adjust the icon size as needed
                 color: Colors.teal, // Adjust the icon color as needed
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Text(
                 title,
-                style: TextStyle(fontSize: 12.0),
+                style: const TextStyle(fontSize: 12.0),
               ),
             ],
           ),
@@ -185,7 +187,7 @@ class WorkshopCard extends StatelessWidget {
 class AnotherPage extends StatelessWidget {
   final String title;
 
-  AnotherPage({required this.title});
+  const AnotherPage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +198,7 @@ class AnotherPage extends StatelessWidget {
       body: Center(
         child: Text(
           'Details for $title',
-          style: TextStyle(fontSize: 20.0),
+          style: const TextStyle(fontSize: 20.0),
         ),
       ),
     );
