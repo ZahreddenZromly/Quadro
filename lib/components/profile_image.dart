@@ -7,6 +7,9 @@ class ProfileImage extends StatelessWidget {
   String title;
   ProfileImage({required this.title});
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,11 +30,15 @@ class ProfileImage extends StatelessWidget {
           ImagePickers(),
           const SizedBox(height: 20,),
 
+          const SizedBox(height: 20,),
+          const ImagePickers(),
+
         ],
       ),
     );
   }
 }
+
 class ImagePickers extends StatefulWidget {
 
   const ImagePickers({super.key});
