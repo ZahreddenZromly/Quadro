@@ -3,6 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
 import 'package:quadro/screens/towing_screen.dart';
+import 'package:quadro/store_system/intro_page.dart';
 import 'package:quadro/towing_user/request_towing.dart';
 
 import '../chat_system/chat_details.dart';
@@ -23,6 +24,7 @@ class _NavBarState extends State<NavBar> {
     const AppointmentsScreen(),
     const HomeScreen(),
     const ChatDetails(),
+    const IntroPage(),
      RequestTowingPage(),
 
   ];
@@ -81,6 +83,10 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const GButton(
                   icon: Icons.chat,
+                  text: 'chat',
+                ),
+                const GButton(
+                  icon: Icons.shopping_bag,
                   text: 'chat',
                 ),
                 GButton(
