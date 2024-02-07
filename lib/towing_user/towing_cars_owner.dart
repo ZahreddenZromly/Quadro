@@ -30,11 +30,12 @@ class DashboardScreen extends StatelessWidget {
            children: [
              SizedBox(height: 50,),
              Container(
-               height: 200,
+               height: 300,
+               width: MediaQuery.of(context).size.width,
                decoration: BoxDecoration(
                  image: DecorationImage(
-                   image: AssetImage('lib/towing_car_assets/towingCar.jpg'),
-                   fit: BoxFit.cover, // Adjust the fit as needed
+                   image: AssetImage('assets/towing/towingCar.jpg'),
+                   fit: BoxFit.contain, // Adjust the fit as needed
                  ),
                ),
              ),
@@ -47,7 +48,7 @@ class DashboardScreen extends StatelessWidget {
                    padding: const EdgeInsets.all(8.0),
                    child:
                    DashboardCard(//notifications_active
-                     imagePath:"lib/towing_car_assets/new_request.jpg",
+                     imagePath:"assets/towing/new_request.jpg",
                      text: "View Requests",
                      call: () =>  Navigator.push(
                          context,
@@ -55,7 +56,7 @@ class DashboardScreen extends StatelessWidget {
                    ),
                  ),
                  DashboardCard(
-                     imagePath:"lib/towing_car_assets/new_overview.jpg",
+                     imagePath:"assets/towing/new_overview.jpg",
                    text: "Overview",
                    call: () =>  Navigator.push(
                        context,
@@ -73,7 +74,7 @@ class DashboardScreen extends StatelessWidget {
                  Padding(
                    padding: const EdgeInsets.all(8.0),
                    child: DashboardCard(
-                     imagePath:"lib/towing_car_assets/availability.jpg",
+                     imagePath:"assets/towing/availability.jpg",
                      text: "Availability Update",
                      call: () =>  Navigator.push(
                          context,
@@ -81,7 +82,7 @@ class DashboardScreen extends StatelessWidget {
                    ),
                  ),
                  DashboardCard(
-                   imagePath:"lib/towing_car_assets/settings.jpg",
+                   imagePath:"assets/towing/settings.jpg",
                    text: "Profile Settings",
                    call: () =>  Navigator.push(
                        context,
