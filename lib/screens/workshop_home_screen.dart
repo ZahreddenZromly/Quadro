@@ -7,7 +7,17 @@ class MyWorkShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return   Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,size: 30,),
+          onPressed: () {
+            // Define what happens when the back arrow button is pressed
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,17 +121,17 @@ class MyDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // Navigate to the WorkshopDetailsPage when the card is tapped
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const WorkshopDetailsPage(),
-          ),
-        );
-      },
-      child: Center(
+    return Center(
+      child: InkWell(
+        onTap: () {
+          // Navigate to the WorkshopDetailsPage when the card is tapped
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const WorkshopDetailsPage(),
+            ),
+          );
+        },
         child: Card(
           child: Container(
             padding: const EdgeInsets.all(16.0),

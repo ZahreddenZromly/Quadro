@@ -103,8 +103,9 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  MyTowing()),
+                  MaterialPageRoute(builder: (context) => MyTowing()),
                 );
+
               },
               child: Card(
                 elevation: 15,
