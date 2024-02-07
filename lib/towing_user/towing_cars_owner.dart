@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quadro/towing_user/profile_settings.dart';
 import 'package:quadro/towing_user/requests.dart';
 
+import '../components/workshop_card.dart';
 import 'availability_page.dart';
 import 'dashboard_card.dart';
 import 'overview_page.dart';
@@ -38,7 +39,6 @@ class DashboardScreen extends StatelessWidget {
                        children: [
                          SizedBox(height: 50),
                          MyDetails(
-                           title: 'My WorkShop',
                          ),
                        ],
                      ),
@@ -61,7 +61,7 @@ class DashboardScreen extends StatelessWidget {
                  Padding(
                    padding: const EdgeInsets.all(8.0),
                    child:
-                   WorkshopCard(
+                   WorkshopCards(
                      title: "View Requests",
                      iconData: Icons.downloading_outlined,
                      call: () =>  Navigator.push(
@@ -69,7 +69,7 @@ class DashboardScreen extends StatelessWidget {
                          MaterialPageRoute(builder: (context) => ViewServiceRequestsPage())),
                    ),
                  ),
-                 WorkshopCard(
+                 WorkshopCards(
                    title: "Overview",
                    iconData: Icons.remove_red_eye,
                    call: () =>  Navigator.push(
@@ -87,7 +87,7 @@ class DashboardScreen extends StatelessWidget {
                children: [
                  Padding(
                    padding: const EdgeInsets.all(8.0),
-                   child: WorkshopCard(
+                   child: WorkshopCards(
                      title:"Availability Update" ,
                      iconData: Icons.lock_clock,
                      call: () =>  Navigator.push(
@@ -95,7 +95,7 @@ class DashboardScreen extends StatelessWidget {
                          MaterialPageRoute(builder: (context) => AvailabilityPage())),
                    ),
                  ),
-                 WorkshopCard(
+                 WorkshopCards(
                    call: () =>  Navigator.push(
                        context,
                        MaterialPageRoute(builder: (context) => ProfileSettingsPage())),
@@ -114,9 +114,8 @@ class DashboardScreen extends StatelessWidget {
 }
 
 class MyDetails extends StatelessWidget {
-  final String title;
 
-  const MyDetails({super.key, required this.title});
+  const MyDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -131,15 +130,19 @@ class MyDetails extends StatelessWidget {
             height: 300,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
+              color: Colors.white,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Adjust the radius as needed
                   bottomRight: Radius.circular(20.0),
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
               ),
-              image: DecorationImage(
-                image: AssetImage('assets/towing/towingCar.jpg'),
-                fit: BoxFit.contain, // Adjust the fit as needed
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/towing/towingCar.jpg',
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -173,44 +176,3 @@ class BackGroundContainer extends StatelessWidget {
   }
 }
 
-class WorkshopCard extends StatelessWidget {
-  final String title;
-  final IconData iconData; // Add this line to store the icon data
-  VoidCallback?  call ;
-  WorkshopCard({super.key, required this.title, required this.iconData, required this.call});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: call,
-      child: SizedBox(
-        width: 175, // Set your desired width
-        height: 150, // Set your desired height
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0), // Make the card rounder
-          ),
-          elevation: 10,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                iconData,
-                size: 48.0, // Adjust the icon size as needed
-                color: Colors.teal, // Adjust the icon color as needed
-              ),
-              const SizedBox(height: 8.0),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  style: const TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

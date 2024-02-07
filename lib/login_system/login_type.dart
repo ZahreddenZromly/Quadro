@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 
-import '../screens/workshop_home_screen.dart';
+import '../workshop_user/workshop_home_screen.dart';
 import '../towing_user/request_towing.dart';
 import '../towing_user/towing_cars_owner.dart';
 
