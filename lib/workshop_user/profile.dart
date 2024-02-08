@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
+
 
 
 class WorkshopProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return   WorkshopDetailsPage();
+    return WorkshopDetailsPage();
   }
 }
 
@@ -30,11 +32,15 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
   ];
   List<String> categoryOptions = ['Repair', 'Maintenance', 'Customization', 'Cleaning'];
   List<String> addressOptions = ['Tripoli', 'Benghazi'];
+
+  // Firebase Firestore instance
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manage Workshop Details',style: TextStyle(color: Colors.white)),
+        title: Text('Manage Workshop Details', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.teal,
       ),
       body: SingleChildScrollView(
@@ -42,27 +48,26 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text("Workshop Namer",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold
-              ),
+            Text(
+              "Workshop Name",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             TextField(
-                decoration: InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-              focusedBorder:   OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: const BorderSide(
-                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(color: Colors.grey.shade200),
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+                fillColor: Colors.grey[100],
+                filled: true,
               ),
-              fillColor: Colors.grey[100],
-              filled: true,),
               onChanged: (value) {
                 setState(() {
                   workshopName = value;
@@ -70,27 +75,26 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
               },
             ),
             SizedBox(height: 12.0),
-            Text("Contact Information",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold
-              ),
+            Text(
+              "Contact Information",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             TextField(
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide(color: Colors.grey.shade200),
                 ),
-                focusedBorder:   OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: const BorderSide(
                     color: Colors.white,
                   ),
                 ),
                 fillColor: Colors.grey[100],
-                filled: true,),
+                filled: true,
+              ),
               onChanged: (value) {
                 setState(() {
                   contactInfo = value;
@@ -98,11 +102,9 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
               },
             ),
             SizedBox(height: 12.0),
-            Text("Location",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold
-              ),
+            Text(
+              "Location",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Padding(
@@ -122,9 +124,11 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
                 }).toList(),
               ),
             ),
-
-            SizedBox(height: 20,),
-            Text('Working Hours:',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+            const SizedBox(height: 20),
+            const Text(
+              'Working Hours:',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
             ListTile(
               title: Text(selectedWorkingHours),
               trailing: Icon(Icons.arrow_drop_down),
@@ -138,12 +142,11 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
               },
             ),
             SizedBox(height: 12.0),
-            SizedBox(height: 12.0),
             Card(
               elevation: 5,
               child: Column(
                 children: [
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'Categories :',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -178,22 +181,16 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
               ),
               onPressed: () {
-                // Save workshop details
-                // You can implement your logic here to save the details
-                print('Workshop Name: $workshopName');
-                print('Address: $address');
-                print('Contact Information: $contactInfo');
-                print('Services Offered: $servicesOffered');
-                print('Working Hours: $selectedWorkingHours');
-                print('Additional Information: $additionalInfo');
+                // Save workshop details to Firestore
+                _saveWorkshopDetails();
               },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Save',
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Save',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-
                   ),
                 ),
               ),
@@ -203,22 +200,58 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
       ),
     );
   }
-}
-Future<String?> _showSliceMenu(BuildContext context, List<String> options) async {
-  return await showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return ListView(
-        shrinkWrap: true,
-        children: options.map((String option) {
-          return ListTile(
-            title: Text(option),
-            onTap: () {
-              Navigator.pop(context, option);
-            },
-          );
-        }).toList(),
-      );
-    },
-  );
+
+  // Function to save workshop details to Firestore
+  Future<void> _saveWorkshopDetails() async {
+    try {
+      // Add a new document with auto-generated ID
+      await _firestore.collection('workshops').add({
+        'workshopName': workshopName,
+        'address': address,
+        'contactInfo': contactInfo,
+        'servicesOffered': servicesOffered,
+        'workingHours': selectedWorkingHours,
+        'additionalInfo': additionalInfo,
+        'categories': selectedCategories,
+      });
+
+      // Show success message or navigate to another screen
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Workshop details saved successfully')));
+
+      // Clear input fields after saving
+      setState(() {
+        workshopName = '';
+        address = '';
+        contactInfo = '';
+        servicesOffered = '';
+        selectedWorkingHours = 'Select working hours';
+        additionalInfo = '';
+        selectedAddress = 'Tripoli';
+        selectedCategories.clear();
+      });
+    } catch (e) {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to save workshop details')));
+      print(e.toString());
+    }
+  }
+
+  Future<String?> _showSliceMenu(BuildContext context, List<String> options) async {
+    return await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView(
+          shrinkWrap: true,
+          children: options.map((String option) {
+            return ListTile(
+              title: Text(option),
+              onTap: () {
+                Navigator.pop(context, option);
+              },
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
 }

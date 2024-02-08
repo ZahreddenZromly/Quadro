@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
+import 'package:quadro/screens/request_towing_screen.dart';
 import 'package:quadro/store_system/intro_page.dart';
 import 'package:quadro/towing_user/request_towing.dart';
 
@@ -24,7 +25,7 @@ class _NavBarState extends State<NavBar> {
     const HomeScreen(),
     const ChatDetails(),
     const IntroPage(),
-     RequestTowingPage(),
+    const RequestTowingScreen(),
 
   ];
 

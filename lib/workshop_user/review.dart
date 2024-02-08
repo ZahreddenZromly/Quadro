@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ReviewsPage extends StatefulWidget {
+  const ReviewsPage({super.key});
+
   @override
   _ReviewsPageState createState() => _ReviewsPageState();
 }
 
 class _ReviewsPageState extends State<ReviewsPage> {
   final TextEditingController _responseController = TextEditingController();
-  Map<int, String> _responses = {};
+  final Map<int, String> _responses = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Workshop Reviews',
           style: TextStyle(
             fontFamily: 'Montserrat',color: Colors.white,
@@ -26,11 +28,11 @@ class _ReviewsPageState extends State<ReviewsPage> {
         future: fetchReviews(), // Function to fetch reviews data
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return Center(
+            return const Center(
               child: Text(
                 'No reviews available',
                 style: TextStyle(
@@ -48,58 +50,58 @@ class _ReviewsPageState extends State<ReviewsPage> {
                   padding: const EdgeInsets.all(5.0),
                   child: Card(
                     elevation: 3.0,
-                    margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     child: ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                       title: Text(
                         review.customerName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           Row(
                             children: [
-                              Icon(Icons.star, color: Colors.amber, size: 16.0),
-                              SizedBox(width: 5.0),
+                              const Icon(Icons.star, color: Colors.amber, size: 16.0),
+                              const SizedBox(width: 5.0),
                               Text(
                                 '${review.rating}/5',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14.0,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           Text(
                             review.comment,
-                            style: TextStyle(fontSize: 14.0),
+                            style: const TextStyle(fontSize: 14.0),
                           ),
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           if (_responses.containsKey(index))
                             Text(
                               'Owner Response: ${_responses[index]}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontStyle: FontStyle.italic,
                                 color: Colors.green,
                               ),
                             ),
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           if (!_responses.containsKey(index))
                             Row(
                               children: [
                                 Expanded(
                                   child: TextField(
                                     controller: _responseController,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       hintText: 'Enter your response',
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 10.0),
+                                const SizedBox(width: 10.0),
                                 ElevatedButton(
                                   onPressed: () {
                                     setState(() {
@@ -107,7 +109,7 @@ class _ReviewsPageState extends State<ReviewsPage> {
                                       _responseController.clear();
                                     });
                                   },
-                                  child: Text('Submit'),
+                                  child: const Text('Submit'),
                                 ),
                               ],
                             ),
@@ -148,7 +150,7 @@ class Review {
 
 Future<List<Review>> fetchReviews() async {
   // Simulated function to fetch reviews data (replace with actual implementation)
-  await Future.delayed(Duration(seconds: 2)); // Simulating delay
+  await Future.delayed(const Duration(seconds: 2)); // Simulating delay
   return [
     Review(
       customerName: 'John Doe',

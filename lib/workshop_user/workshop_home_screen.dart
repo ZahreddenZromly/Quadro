@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: ListView(
         children:[
-          Center(
+          const Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
