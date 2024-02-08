@@ -41,9 +41,9 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
     'Integrated Tow Truck',
   ];
   List<Map<String, String>> towingServices = [
-    {'name': 'Towing Service Provider A', 'location': '123 Main St', 'contact': '555-1234'},
-    {'name': 'Towing Service Provider B', 'location': '456 Elm St', 'contact': '555-5678'},
-    {'name': 'Towing Service Provider C', 'location': '789 Oak St', 'contact': '555-9012'},
+    {'name': 'Towing Service Provider A', 'location': 'Tripoli', 'contact': '091-555-1234','price': '50 LYD'},
+    {'name': 'Towing Service Provider B', 'location': 'Banghazi', 'contact': '092-555-5678', 'price': '50 LYD'},
+    {'name': 'Towing Service Provider C', 'location': 'Tripoli', 'contact': '091-555-9012', 'price': '50 LYD'},
   ];
 
   @override
@@ -240,11 +240,13 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                       child: ListTile(
                         title: Text(service['name']!),
+                        trailing: Icon(Icons.car_crash,color: Colors.teal,size: 40),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Location: ${service['location']}'),
                             Text('Contact: ${service['contact']}'),
+                            Text('Price: ${service['price']}'),
                           ],
                         ),
                         onTap: () {
