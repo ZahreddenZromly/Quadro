@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
-import 'package:quadro/screens/request_towing_screen.dart';
-import 'package:quadro/screens/request_towing_form.dart';
+import 'package:quadro/screens/towing_screen.dart';
+import 'package:quadro/store_system/intro_page.dart';
+import 'package:quadro/towing_user/request_towing.dart';
 
 import '../chat_system/chat_details.dart';
 
@@ -22,8 +23,10 @@ class _NavBarState extends State<NavBar> {
     // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
-    ChatDetails(),
-    RequestTowingScreen(),
+    const ChatDetails(),
+    const IntroPage(),
+     RequestTowingPage(),
+
   ];
 
   @override
@@ -31,10 +34,6 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   elevation: 20,
-      //   title: const Text('GoogleNavBar'),
-      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -84,6 +83,10 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const GButton(
                   icon: Icons.chat,
+                  text: 'chat',
+                ),
+                const GButton(
+                  icon: Icons.shopping_bag,
                   text: 'chat',
                 ),
                 GButton(

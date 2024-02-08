@@ -10,9 +10,10 @@
 ///    - family:  MyFlutterApp
 ///      fonts:
 ///       - asset: fonts/MyFlutterApp.ttf
-///
-/// 
-///
+library;
+
+
+
 import 'package:flutter/widgets.dart';
 
 class MyFlutterApp {

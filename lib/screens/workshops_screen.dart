@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quadro/components/category_card.dart';
-import 'package:quadro/components/filter_component.dart';
 import 'package:quadro/components/search_bar.dart';
-import 'package:quadro/components/workshop_card.dart';
 import 'package:quadro/components/workshop_list_tile.dart';
 
 class WorkshopsScreen extends StatelessWidget {
@@ -23,7 +19,7 @@ class WorkshopsScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back, size: 25),
+            icon: const Icon(Icons.arrow_back, size: 25),
           ),
         ),
         title: const Padding(
@@ -38,7 +34,7 @@ class WorkshopsScreen extends StatelessWidget {
         ),
         // Other AppBar properties...
       ),
-      body: Column(
+      body: const Column(
         children: [
           QSearchBar(),
           // Text('hello'),

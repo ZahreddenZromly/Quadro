@@ -7,7 +7,10 @@ import 'package:quadro/login_system/auth_service.dart';
 import 'package:quadro/screens/settings.dart';
 import 'package:quadro/screens/your_profile.dart';
 import '../components/profile_image.dart';
-import '../login_system/auth_service.dart';
+
+import '../login_system/login_or_register.dart';
+import '../login_system/login_screen.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -77,7 +80,10 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
         content: const Text('Are you sure you want to log out?'),
         actions: <Widget>[
           TextButton(
-            onPressed: () async => await FirebaseAuth.instance.signOut(),
+            onPressed: () {
+              // Perform the logout action here
+              Navigator.of(context).pop(); // Close the dialog
+            },
 
             child: const Text('Cancel',
             style: TextStyle(
@@ -87,10 +93,10 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              // Perform the logout action here
-              Navigator.of(context).pop(); // Close the dialog
-            },
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  LoginOrRegister()));
+            } ,
             child: const Text('Logout',
               style: TextStyle(
               color: Colors.teal,

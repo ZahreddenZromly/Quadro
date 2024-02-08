@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:quadro/login_system/login_or_register.dart';
 import 'package:quadro/login_system/login_type.dart';
 
-import '../screens/home_screen.dart';
-import 'login_screen.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});

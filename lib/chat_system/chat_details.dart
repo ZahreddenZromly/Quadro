@@ -2,11 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quadro/components/category_tile.dart';
-import 'package:quadro/components/search_bar.dart';
-import 'package:quadro/components/workshop_card.dart';
-import 'package:quadro/screens/categories_screen.dart';
-import 'package:quadro/screens/profile_screen.dart';
 
 import '../login_system/auth_service.dart';
 import '../screens/chat-screen.dart';

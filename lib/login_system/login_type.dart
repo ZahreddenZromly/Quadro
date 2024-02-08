@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/navbar.dart';
 
-import '../screens/workshop_home_screen.dart';
+import '../workshop_user/workshop_home_screen.dart';
+import '../towing_user/request_towing.dart';
+import '../towing_user/towing_cars_owner.dart';
 
 class LoginType extends StatelessWidget {
   const LoginType({super.key});
@@ -60,7 +62,7 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  MyWorkShop()),
+                  MaterialPageRoute(builder: (context) =>  const MyWorkShop()),
                 );
               },
               child: Card(
@@ -101,8 +103,9 @@ class LoginType extends StatelessWidget {
                 // Navigate to User Login Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const NavBar()),
+                  MaterialPageRoute(builder: (context) => MyTowing()),
                 );
+
               },
               child: Card(
                 elevation: 15,
@@ -175,31 +178,3 @@ class CardWidget extends StatelessWidget {
     );
   }
 }
-
-// class UserLoginPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('User Login Page'),
-//       ),
-//       body: Center(
-//         child: Text('This is the User Login Page'),
-//       ),
-//     );
-//   }
-// }
-//
-// class BusinessUserLoginPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Business User Login Page'),
-//       ),
-//       body: Center(
-//         child: Text('This is the Business User Login Page'),
-//       ),
-//     );
-//   }
-// }
