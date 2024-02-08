@@ -16,14 +16,8 @@ class MyTowing extends StatelessWidget {
   }
 }
 
-class DashboardScreen extends StatefulWidget {
+class DashboardScreen extends StatelessWidget {
 
-  @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  bool isAvailable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,22 +54,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
              SizedBox(height: 50,),
 
-             Row(
-               mainAxisAlignment: MainAxisAlignment.end,
-               children: [
-                 Text('Availability Status ',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-                 Switch(
-                   inactiveThumbColor:Colors.teal,
-                   activeColor: Colors.teal,
-                   value: isAvailable,
-                   onChanged: (value) {
-                     setState(() {
-                       isAvailable = value;
-                     });
-                   },
-                 ),
-               ],
-             ),
              Row(
                crossAxisAlignment: CrossAxisAlignment.center,
                mainAxisAlignment: MainAxisAlignment.center,

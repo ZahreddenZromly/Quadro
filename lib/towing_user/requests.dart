@@ -13,6 +13,8 @@ class ServiceRequest {
 }
 
 class ViewServiceRequestsPage extends StatefulWidget {
+  const ViewServiceRequestsPage({super.key});
+
   @override
   _ViewServiceRequestsPageState createState() => _ViewServiceRequestsPageState();
 }
@@ -36,7 +38,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Service Requests'),
+        title: const Text('View Service Requests'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,8 +55,8 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Contact Number: ${request.contactNumber}',style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text('Assistance Type: ${request.assistanceType}',style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Contact Number: ${request.contactNumber}',style: const TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Assistance Type: ${request.assistanceType}',style: const TextStyle(fontWeight: FontWeight.bold)),
                       Text('Status: ${request.status ?? 'Pending'}', style: TextStyle(fontWeight: FontWeight.bold, color: _getStatusColor(request.status))),
 
                     ],
@@ -63,7 +65,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.check),
+                        icon: const Icon(Icons.check),
                         color: Colors.green,
                         onPressed: () {
                           _handleAcceptAction(request);
@@ -72,7 +74,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: Colors.red,
                         onPressed: () {
                           // Handle reject action
@@ -81,7 +83,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.map),
+                        icon: const Icon(Icons.map),
                         color: Colors.blue,
                         onPressed: () {
                           // Handle opening the location in Google Maps

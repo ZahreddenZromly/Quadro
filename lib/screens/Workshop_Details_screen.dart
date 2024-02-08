@@ -20,6 +20,7 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Workshop Details'),
       ),

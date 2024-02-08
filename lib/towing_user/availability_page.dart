@@ -7,7 +7,7 @@ class AvailabilityPage extends StatefulWidget {
 }
 
 class _AvailabilityPageState extends State<AvailabilityPage> {
-
+  bool isAvailable = false;
   String selectedWorkingHours = 'Select working hours';
   String selectedDaysOff = 'Select days off';
   CalendarFormat calendarFormat = CalendarFormat.month;
@@ -48,7 +48,17 @@ class _AvailabilityPageState extends State<AvailabilityPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
+                Text('Availability Status:',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+                Switch(
+                  inactiveThumbColor:Colors.teal,
+                  activeColor: Colors.teal,
+                  value: isAvailable,
+                  onChanged: (value) {
+                    setState(() {
+                      isAvailable = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16.0),
                 Text('Working Hours:',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
                 ListTile(
@@ -112,6 +122,7 @@ class _AvailabilityPageState extends State<AvailabilityPage> {
                       // Handle the submission of availability information
                       // You can send this information to a backend server for storage
                       // or update the local database.
+                      print('Availability Status: $isAvailable');
                       print('Working Hours: $selectedWorkingHours');
                       print('Days Off: $selectedDaysOff');
                     },

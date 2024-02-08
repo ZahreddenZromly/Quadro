@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
-import 'package:quadro/screens/towing_screen.dart';
 import 'package:quadro/store_system/intro_page.dart';
 import 'package:quadro/towing_user/request_towing.dart';
 
@@ -32,7 +31,6 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -61,18 +59,6 @@ class _NavBarState extends State<NavBar> {
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               tabs: [
-                // GButton(
-                //     icon: Icons.arrow_back_ios_new,
-                //     onPressed: () {
-                //       const snackBar = SnackBar(
-                //         backgroundColor: Colors.teal,
-                //         content: Center(
-                //           child: Text('Do You Want To Logout?'),
-                //         ),
-                //         closeIconColor: Colors.red,
-                //       );
-                //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                //     }),
                 const GButton(
                   icon: Icons.calendar_month,
                   text: 'Appointments',

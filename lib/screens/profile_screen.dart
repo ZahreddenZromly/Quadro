@@ -9,7 +9,6 @@ import 'package:quadro/screens/your_profile.dart';
 import '../components/profile_image.dart';
 
 import '../login_system/login_or_register.dart';
-import '../login_system/login_screen.dart';
 
 
 class Profile extends StatefulWidget {
@@ -30,6 +29,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: SafeArea(
           child: Column(
@@ -95,7 +95,7 @@ Future<void> showLogoutConfirmationDialog(BuildContext context) async {
           ElevatedButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  LoginOrRegister()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  const LoginOrRegister()));
             } ,
             child: const Text('Logout',
               style: TextStyle(
