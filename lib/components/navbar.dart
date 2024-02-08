@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quadro/screens/appointments_screen.dart';
 import 'package:quadro/screens/home_screen.dart';
-import 'package:quadro/screens/towing_screen.dart';
+import 'package:quadro/screens/request_towing_screen.dart';
+import 'package:quadro/screens/request_towing_form.dart';
+
+import '../chat_system/chat_details.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -19,7 +22,8 @@ class _NavBarState extends State<NavBar> {
     // Login(),
     const AppointmentsScreen(),
     const HomeScreen(),
-    TowingScreen(),
+    ChatDetails(),
+    RequestTowingScreen(),
   ];
 
   @override
@@ -77,6 +81,10 @@ class _NavBarState extends State<NavBar> {
                 const GButton(
                   icon: Icons.home,
                   text: 'Home',
+                ),
+                const GButton(
+                  icon: Icons.chat,
+                  text: 'chat',
                 ),
                 GButton(
                   backgroundColor: Colors.teal,

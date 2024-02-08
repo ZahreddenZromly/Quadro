@@ -4,11 +4,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:quadro/components/image_picker.dart';
 
 class ProfileImage extends StatelessWidget {
-  String title;
+  final String title;
 
   // ProfileImage({required this.title});
 
   ProfileImage({super.key, required this.title});
+
+  // ProfileImage({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,11 @@ class ProfileImage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const ImagePickers(),
+          ImagePickers(),
+          const SizedBox(
+            height: 20,
+          ),
+          ImagePickers(),
         ],
       ),
     );

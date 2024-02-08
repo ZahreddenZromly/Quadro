@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/review_tile.dart';
+import 'package:quadro/screens/request_appointment_screen.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,7 +61,12 @@ class WorkshopScreen extends StatelessWidget {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  // Handle button press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RequestAppointmentScreen(),
+                    ),
+                  );
                 },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(const EdgeInsets.all(4)),
@@ -117,7 +123,8 @@ class WorkshopScreen extends StatelessWidget {
               preferredSize: const Size.fromHeight(60),
               child: Container(
                 height: 60,
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(12),
@@ -298,7 +305,8 @@ class WorkshopScreen extends StatelessWidget {
                                         const Icon(Icons.message),
                                         TextButton(
                                             onPressed: () {},
-                                            child: const Text('Send a message')),
+                                            child:
+                                                const Text('Send a message')),
                                       ],
                                     ),
                                   ],
@@ -313,7 +321,8 @@ class WorkshopScreen extends StatelessWidget {
                                         const Icon(Icons.location_on),
                                         TextButton(
                                             onPressed: () {},
-                                            child: const Text('AinZara/Tripoli')),
+                                            child:
+                                                const Text('AinZara/Tripoli')),
                                       ],
                                     ),
                                     Row(
@@ -321,7 +330,8 @@ class WorkshopScreen extends StatelessWidget {
                                         const Icon(Icons.message),
                                         TextButton(
                                             onPressed: () {},
-                                            child: const Text('Send a message')),
+                                            child:
+                                                const Text('Send a message')),
                                       ],
                                     ),
                                   ],

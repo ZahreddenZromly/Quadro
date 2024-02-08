@@ -1,75 +1,28 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:quadro/components/image_picker.dart';
-import 'package:quadro/my_flutter_app_icons.dart';
+import 'package:quadro/components/navbar.dart';
+import 'package:quadro/cubits/towing_request/towing_cubit.dart';
+import 'package:quadro/cubits/towing_request/towing_request_model.dart';
+import 'package:quadro/cubits/towing_request/towing_state.dart';
 
-enum towingType { Tug, Pull }
-
-class TowingScreen extends StatefulWidget {
-  TowingScreen({super.key});
-
-  @override
-  State<TowingScreen> createState() => _TowingScreenState();
-}
-
-class _TowingScreenState extends State<TowingScreen> {
-  final db = FirebaseFirestore.instance;
-  List<String> brands = [];
-
-  Future<void> getCarBrands() async {
-    try {
-      final brandsSnapshot = await db.collection('Car Brands').get();
-      brands = brandsSnapshot.docs.map((doc) => doc['name'] as String).toList();
-      setState(() {});
-    } catch (error) {
-      // Handle errors gracefully (e.g., display an error message)
-    }
-    print('$brands[0]');
-  }
-
-  List<String> models = [];
-
-  Future<void> getCarModels(String selectedBrand) async {
-    try {
-      final modelsSnapshot = await db
-          .collection('Car Brands')
-          .doc(selectedBrand)
-          .collection('models')
-          .get();
-      models = modelsSnapshot.docs.map((doc) => doc['name'] as String).toList();
-      selectedModel = models[0];
-      setState(() {});
-    } catch (error) {
-      // Handle errors gracefully
-    }
-    // print('models: $selectedBrand $models');
-  }
+class RequestTowingForm extends StatelessWidget {
+  RequestTowingForm({super.key, required this.state});
+  // final db = FirebaseFirestore.instance;
+  // final TowingCubit? cubit;
+  final TowingStateLoaded? state;
 
   String? selectedBrand;
   String? selectedModel;
-  int _selectedType = -1;
-  Future<void> _fetchData() async {
-    try {
-      await getCarBrands();
-      selectedBrand = brands[0]; // Set initial brand after fetching
-      await getCarModels(selectedBrand!);
-    } catch (error) {
-      // Handle errors gracefully
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchData();
-  }
+  String? _selectedType;
+  List<String>? brands;
+  List<String>? models;
 
   final TextEditingController descriptionController = TextEditingController();
   File? _image;
@@ -78,18 +31,21 @@ class _TowingScreenState extends State<TowingScreen> {
     final XFile? image =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
-      setState(() {
-        _image = File(image.path);
-      });
+      _image = File(image.path);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // if (brands.isEmpty) {
-    //   return Center(child: CircularProgressIndicator()); // Show loading
-    // }
-
+    // final brands = context.read<TowingCubit>().state.fetchedBrands;
+    final cubit = context.read<TowingCubit>();
+    brands = state!.brands;
+    models = state!.models;
+    selectedBrand = state!.selectedBrand;
+    selectedModel = state!.selectedModel;
+    _selectedType = state!.type;
+    // selectedBrand = state!.selectedBrand;
+    // final state = context.watch<TowingCubit>().state;
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
@@ -97,7 +53,7 @@ class _TowingScreenState extends State<TowingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 350,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -113,7 +69,6 @@ class _TowingScreenState extends State<TowingScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             const SizedBox(
               width: 350,
               child: Row(
@@ -161,9 +116,14 @@ class _TowingScreenState extends State<TowingScreen> {
                                   blurRadius: 7)
                             ]),
                             child: ChoiceChip(
+                              onSelected: (bool value) {
+                                cubit.select_a_type(
+                                    TowingType.values[index].name);
+                              },
+                              selected: _selectedType ==
+                                  TowingType.values[index].name,
                               labelPadding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 8),
-
                               backgroundColor: Colors.grey[100],
                               showCheckmark: false,
                               padding: EdgeInsets.all(8),
@@ -175,30 +135,19 @@ class _TowingScreenState extends State<TowingScreen> {
                                   ),
                                   SizedBox(width: 20),
                                   Text(
-                                    '${towingType.values[index].name}',
+                                    TowingType.values[index].name,
                                     style: TextStyle(
                                       letterSpacing: 1,
                                       fontSize: 22,
-                                      color: _selectedType == index
+                                      color: _selectedType ==
+                                              TowingType.values[index].name
                                           ? Colors.white
                                           : Colors.black,
                                     ),
                                   ),
                                 ],
                               ),
-                              // color of selected chip
-
-                              // selected chip value
-                              selected: _selectedType == index,
                               selectedColor: Colors.teal,
-
-                              // onselected method
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  _selectedType = selected ? index : -1;
-                                  print(_selectedType == index);
-                                });
-                              },
                             ),
                           ),
                         );
@@ -208,6 +157,7 @@ class _TowingScreenState extends State<TowingScreen> {
                 ),
               ),
             ),
+
             const SizedBox(height: 16),
             const SizedBox(
               width: 350,
@@ -241,26 +191,19 @@ class _TowingScreenState extends State<TowingScreen> {
                   width: 150,
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
-                      dropdownColor: Colors.grey[100],
-                      icon: const Icon(Icons.expand_more),
-                      isExpanded: true,
-                      value: selectedBrand, // Initially selected option
-                      onChanged: (newBrand) => setState(() {
-                        selectedBrand = newBrand!;
-                        getCarModels(newBrand);
-                        // selectedModel = null; // Reset selected model
-                      }),
-
-                      style: TextStyle(fontSize: 22, color: Colors.black),
-                      iconSize: 35,
-                      items:
-                          brands.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Center(child: Text(value)),
-                        );
-                      }).toList(),
-                    ),
+                        dropdownColor: Colors.grey[100],
+                        icon: const Icon(Icons.expand_more),
+                        isExpanded: true,
+                        value: selectedBrand,
+                        style: TextStyle(fontSize: 22, color: Colors.black),
+                        iconSize: 35,
+                        items: brands!.map((brand) {
+                          return DropdownMenuItem(
+                              child: Text(brand), value: brand);
+                        }).toList(),
+                        onChanged: (value) {
+                          cubit.getCarModels(value!);
+                        }),
                   ),
                 ),
                 const SizedBox(width: 32),
@@ -283,14 +226,17 @@ class _TowingScreenState extends State<TowingScreen> {
                       isExpanded: true,
                       // itemHeight: 80,
                       value: selectedModel, // Initially selected option
-                      onChanged: (newModel) => setState(() {
-                        selectedModel = newModel!;
-                      }),
+                      onChanged: (value) => {
+                        cubit.select_a_model(value!),
+                      },
+                      // onChanged: (newModel) => setState(() {
+                      //   selectedModel = newModel!;
+                      // }),
 
                       style: TextStyle(fontSize: 22, color: Colors.black),
                       iconSize: 35,
                       items:
-                          models.map<DropdownMenuItem<String>>((String value) {
+                          models!.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Center(child: Text(value)),
@@ -424,12 +370,36 @@ class _TowingScreenState extends State<TowingScreen> {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => WorkshopScreen(),
-                //   ),
-                // );
+                cubit.createTowingRequest(
+                  towingType: _selectedType,
+                  model: selectedModel,
+                  description: descriptionController.text,
+                );
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    backgroundColor: Colors.grey[100],
+                    actions: [
+                      TextButton(
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NavBar(),
+                                ),
+                              ),
+                          child: const Text(
+                            'Done',
+                            style: TextStyle(fontSize: 17),
+                          )),
+                    ],
+                    title: const Center(
+                        child: Text(
+                      'Request Submitted.',
+                      style: TextStyle(fontSize: 23),
+                    )),
+                    contentPadding: EdgeInsets.all(20),
+                  ),
+                );
               },
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(const EdgeInsets.all(4)),

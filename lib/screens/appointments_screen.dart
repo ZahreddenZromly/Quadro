@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quadro/login_system/login_or_register.dart';
 import 'package:quadro/login_system/login_screen.dart';
 
 
@@ -14,7 +15,7 @@ class AppointmentsScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const Login(),
+                builder: (context) => const LoginOrRegister(),
               ),
             );
           },
