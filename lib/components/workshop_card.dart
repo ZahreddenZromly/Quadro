@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../screens/workshop_screen.dart';
+
 class WorkshopCard extends StatelessWidget {
   final String workshopName;
-  final String address;
   final String contactInfo;
-  final String workingHours;
-  final List<String> categories;
 
   const WorkshopCard({
     required this.workshopName,
-    required this.address,
     required this.contactInfo,
-    required this.workingHours,
-    required this.categories,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200, // Adjust the height as needed
+      height: 100, // Adjust the height as needed
       child: Card(
-        child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 100, // Adjust the height as needed
+                height: 150, // Adjust the height as needed
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/workshops/workshop.jpeg'), // Path to your static image asset
@@ -34,51 +31,30 @@ class WorkshopCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    workshopName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+              SizedBox(height: 8), // Add some spacing
+              Center(
+                child: Text(
+                  workshopName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Address: $address',
-                  style: TextStyle(fontSize: 16),
-                ),
+              SizedBox(height: 20), // Add some spacing
+              Text(
+                'Contact: $contactInfo',
+                style: TextStyle(fontSize: 14),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Contact: $contactInfo',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Working Hours: $workingHours',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Categories: ${categories.join(", ")}',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
+              SizedBox(height: 8), // Add some spacing
+              Align(
+                alignment: Alignment.center,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to workshop screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  WorkshopScreen()),
+                    );
                   },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(const EdgeInsets.all(4)),
@@ -87,12 +63,12 @@ class WorkshopCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    minimumSize: MaterialStateProperty.all(const Size(80, 40.0)),
+                    minimumSize: MaterialStateProperty.all(const Size(200, 50.0)),
                     backgroundColor: MaterialStateProperty.all(Colors.teal),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Visit',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                 ),
               )
@@ -103,6 +79,7 @@ class WorkshopCard extends StatelessWidget {
     );
   }
 }
+
 
 
 
@@ -126,10 +103,7 @@ class WorkshopList extends StatelessWidget {
             final workshop = workshops[index];
             return WorkshopCard(
               workshopName: workshop['workshopName'],
-              address: workshop['address'],
               contactInfo: workshop['contactInfo'],
-              workingHours: workshop['selectedWorkingHours'],
-              categories: List<String>.from(workshop['selectedCategories']),
             );
           },
         );

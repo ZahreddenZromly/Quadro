@@ -6,7 +6,7 @@ class WorkshopOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Workshop Overview',style: TextStyle(color: Colors.white)),
+          title: const Text('Workshop Overview',style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.teal,
         ),
         body: WorkshopOverview()
@@ -69,13 +69,13 @@ class WorkshopStatCard extends StatelessWidget {
               size: 36.0,
               color: Theme.of(context).primaryColor,
             ),
-            SizedBox(width: 20.0),
+            const SizedBox(width: 20.0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   label,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),

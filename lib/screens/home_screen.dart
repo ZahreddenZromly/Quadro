@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -30,24 +30,54 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
-              icon: const Icon(Icons.category),
+              icon: const Icon(
+                Icons.category,
+                color: Colors.white,
+              ),
             ),
-            const Text("Home"),
             IconButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const Profile()),
+                  MaterialPageRoute(builder: (context) => const Profile()),
                 );
               },
-              icon: const Icon(Icons.person),
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
       ),
       body: Column(
         children: [
+          const SizedBox(height: 8),
+          Container(
+            height: 180, // Adjust the height according to your need
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: Colors.teal[600],
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: const Center(
+              child: Text(
+                'QUADRO',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const SizedBox(height: 8),
           const QSearchBar(),
           const SizedBox(height: 16),
@@ -83,10 +113,7 @@ class HomeScreen extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 8.0),
                               child: WorkshopCard(
                                 workshopName: workshop['workshopName'],
-                                address: workshop['address'],
                                 contactInfo: workshop['contactInfo'],
-                                workingHours: '',
-                                categories: [],
                               ),
                             );
                           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:quadro/components/navbar.dart';
@@ -16,6 +17,8 @@ import 'package:quadro/towing_user/request_towing.dart';
 import 'package:quadro/towing_user/towing_cars_owner.dart';
 import 'package:quadro/workshop_user/workshop_home_screen.dart';
 import '../firebase/firebase_options.dart';
+import 'cubits/appointments/appointments_cubit.dart';
+import 'cubits/towing_request/towing_cubit.dart';
 import 'login_system/login_screen.dart';
 
 void main() async {
@@ -28,6 +31,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => Shop()), // New ChangeNotifierProvider for Shop
+        BlocProvider(create: (_) => TowingCubit()),
+        BlocProvider(create: (_) => AppointmentCubit()),
       ],
       child: const MyApp(),
     ),
