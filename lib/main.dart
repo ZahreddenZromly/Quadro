@@ -13,6 +13,7 @@ import 'package:quadro/store_system/models/shop.dart';
 import 'package:quadro/store_system/shop_screen.dart';
 import 'package:quadro/themes/light_mode.dart';
 import 'package:quadro/towing_user/request_towing.dart';
+import 'package:quadro/towing_user/towing_cars_owner.dart';
 import 'package:quadro/workshop_user/workshop_home_screen.dart';
 import '../firebase/firebase_options.dart';
 import 'login_system/login_screen.dart';
@@ -48,8 +49,8 @@ class MyApp extends StatelessWidget {
         '/intro_page': (context) => const IntroPage(),
         '/shop_screen': (context) => const ShopPage(),
         '/cart_screen': (context) => const CartPage(),
-        '/workshop_home_screen': (context) =>  MyWorkShop(),
-        '/request_towing': (context) =>  RequestTowingPage(),
+        '/workshop_home_screen': (context) =>  const MyWorkShop(),
+        '/towing_cars_owner': (context) =>  MyTowing(),
         '/login_or_register': (context) =>  const LoginOrRegister(),
       },
     );

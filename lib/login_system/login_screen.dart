@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // Check if the user exists in the tow_user collection
       if (userDoc.exists) {
-        Navigator.pushReplacementNamed(context, '/request_towing');
+        Navigator.pushReplacementNamed(context, '/towing_cars_owner');
         return;
       }
 
