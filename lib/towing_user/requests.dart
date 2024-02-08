@@ -3,11 +3,13 @@ class ServiceRequest {
   String userName;
   String contactNumber;
   String assistanceType;
-  ServiceRequest({
+  String? status;
+   ServiceRequest({
     required this.userName,
     required this.contactNumber,
     required this.assistanceType,
-  });
+     this.status,
+   });
 }
 
 class ViewServiceRequestsPage extends StatefulWidget {
@@ -53,6 +55,8 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                     children: [
                       Text('Contact Number: ${request.contactNumber}',style: TextStyle(fontWeight: FontWeight.bold)),
                       Text('Assistance Type: ${request.assistanceType}',style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Status: ${request.status ?? 'Pending'}', style: TextStyle(fontWeight: FontWeight.bold, color: _getStatusColor(request.status))),
+
                     ],
                   ),
                   trailing: Row(
@@ -100,9 +104,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
     // For example, you can update the request status, notify the user, etc.
 
     // Update the status (this is just an example, you might have a more sophisticated way to manage status)
-    setState(() {
-      serviceRequests.remove(request);
-    });
+    request.status = 'Accepted';
 
     // Show a confirmation dialog or snackbar
     ScaffoldMessenger.of(context).showSnackBar(
@@ -110,6 +112,9 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
         content: Text('Accepted service request from ${request.userName}'),
       ),
     );
+
+    // Update the UI
+    setState(() {});
   }
 
   void _handleRejectAction(ServiceRequest request) {
@@ -117,9 +122,7 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
     // For example, you can update the request status, notify the user, etc.
 
     // Update the status (this is just an example, you might have a more sophisticated way to manage status)
-    setState(() {
-      serviceRequests.remove(request);
-    });
+    request.status = 'Rejected';
 
     // Show a confirmation dialog or snackbar
     ScaffoldMessenger.of(context).showSnackBar(
@@ -127,6 +130,20 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
         content: Text('Rejected service request from ${request.userName}'),
       ),
     );
+
+    // Update the UI
+    setState(() {});
   }
+  Color _getStatusColor(String? status) {
+    if (status == 'Pending') {
+      return Colors.orange;
+    } else if (status == 'Accepted') {
+      return Colors.green;
+    } else if (status == 'Rejected') {
+      return Colors.red;
+    }
+    return Colors.black;
+  }
+
 
 }

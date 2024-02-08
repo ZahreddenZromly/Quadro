@@ -73,6 +73,12 @@ class AppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String statusText = appointment.status.toString().split('.').last;
+    Color statusColor = Colors.black; // Default color
+    if (appointment.status == AppointmentStatus.confirmed) {
+      statusColor = Colors.green; // Change color for confirmed status
+    } else if (appointment.status == AppointmentStatus.rejected) {
+      statusColor = Colors.red; // Change color for rejected status
+    }
     return Card(
       elevation: 10,
       child: ListTile(
@@ -85,7 +91,7 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(height: 10,),
             Text("Service Requested: ${appointment.serviceRequested}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
             SizedBox(height: 10,),
-            Text("Status: $statusText",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+            Text("Status: $statusText",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: statusColor)),
           ],
         ),
         trailing: appointment.status == AppointmentStatus.pending

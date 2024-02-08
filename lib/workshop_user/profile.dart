@@ -22,13 +22,15 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
   String selectedWorkingHours = 'Select working hours';
   String additionalInfo = '';
   String selectedAddress = 'Tripoli';
+  String description = '';
   List<String> selectedCategories = [];
   List<String> workingHoursOptions = [
     '9 AM - 5 PM',
     '8 AM - 4 PM',
     '10 AM - 6 PM',
   ];
-  List<String> categoryOptions = ['Repair', 'Maintenance', 'Customization', 'Cleaning'];
+  List<String> categoryOptions = ["Engine repairs",'Cooling system servicing', 'Fuel system cleaning',
+    'Brake pad replacement', 'Electrical system repairs',"Brake system repairs",""];
   List<String> addressOptions = ['Tripoli', 'Benghazi'];
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text("Workshop Namer",
+            Text("Workshop Name",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold
@@ -51,6 +53,7 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
             SizedBox(height: 10,),
             TextField(
                 decoration: InputDecoration(
+                  hintText: 'Write a name...',
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide(color: Colors.grey.shade200),
@@ -79,6 +82,7 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
             SizedBox(height: 10,),
             TextField(
               decoration: InputDecoration(
+
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide(color: Colors.grey.shade200),
@@ -94,6 +98,38 @@ class _WorkshopDetailsPageState extends State<WorkshopDetailsPage> {
               onChanged: (value) {
                 setState(() {
                   contactInfo = value;
+                });
+              },
+            ),
+            SizedBox(height: 12.0),
+            Text("Description",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(16.0, 20.0, 20.0, 50.0),
+                hintText: 'Write a description...',
+
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(color: Colors.grey.shade200),
+                ),
+                focusedBorder:   OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+                fillColor: Colors.grey[100],
+                filled: true,),
+              maxLines: null, // Allows for multiline input
+              onChanged: (value) {
+                setState(() {
+                  description = value;
                 });
               },
             ),
