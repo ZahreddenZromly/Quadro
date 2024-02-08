@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/home_screen.dart';
+
 
 
 
@@ -47,7 +49,19 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // You can change the icon as needed
+          onPressed: () {
+            // Add your onPressed functionality here
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
+        ),
+      ),
       body: Stack(
         children: [ ListView(
           children: [
