@@ -21,7 +21,6 @@ class Profile extends StatefulWidget {
 
 
 class _ProfileState extends State<Profile> {
-  File? _image;
 
   void signOut(){
     final authService =Provider.of<AuthService>(context , listen: false);
