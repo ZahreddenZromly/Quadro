@@ -5,7 +5,8 @@ class MyTextFeild extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  const MyTextFeild({
+
+   const MyTextFeild({
     super.key,
     required this.controller,
     required this.hintText,
@@ -22,7 +23,7 @@ class MyTextFeild extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: Colors.grey.shade200),
         ),
-        focusedBorder:   OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(
             color: Colors.white,

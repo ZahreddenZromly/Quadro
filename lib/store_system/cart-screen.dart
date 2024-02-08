@@ -13,12 +13,12 @@ class CartPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text("Remove this item from your cart?"),
+        content: const Text("Remove this item from your cart?"),
         actions: [
           // cancel button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           // yes button
           MaterialButton(
@@ -28,7 +28,7 @@ class CartPage extends StatelessWidget {
               context.read<Shop>().removeFromCart(product);
             },
 
-            child: Text("Yes"),
+            child: const Text("Yes"),
           ),
         ],
       ),
@@ -54,7 +54,7 @@ class CartPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Cart Page"),
+        title: const Text("Cart Page"),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
@@ -87,7 +87,7 @@ class CartPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(50.0),
             child: MyButtonBox(
-                onTap: () => payButtonPressed(context), child: Text("Pay Now")),
+                onTap: () => payButtonPressed(context), child: const Text("Pay Now")),
           )
         ],
       ),

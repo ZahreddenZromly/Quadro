@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ProfileSettingsPage extends StatefulWidget {
+  const ProfileSettingsPage({super.key});
+
   @override
   _ProfileSettingsPageState createState() => _ProfileSettingsPageState();
 }
 
 class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _contactController = TextEditingController();
-  TextEditingController _locationController = TextEditingController();
-  TextEditingController _businessDetailsController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _contactController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _businessDetailsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Settings'),
+        title: const Text('Profile Settings'),
       ),
       body: SingleChildScrollView(
         child: Card(
@@ -23,13 +27,13 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           elevation: 10,
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Name',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -37,12 +41,12 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                 ),
                 TextField(
                   controller: _nameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Enter your name',
                   ),
                 ),
-                SizedBox(height: 20.0),
-                Text(
+                const SizedBox(height: 20.0),
+                const Text(
                   'Contact Details',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -50,12 +54,12 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                 ),
                 TextField(
                   controller: _contactController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Enter your contact details',
                   ),
                 ),
-                SizedBox(height: 20.0),
-                Text(
+                const SizedBox(height: 20.0),
+                const Text(
                   'Location',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -63,27 +67,30 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                 ),
                 TextField(
                   controller: _locationController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Enter your location',
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
 
 
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.teal, // Change the background color here
+                      backgroundColor: Colors.teal,
+                      // Change the background color here
                       elevation: 10,
                     ),
                     onPressed: () {
                       // Update profile information
                       _updateProfile();
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Update Profile', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15 )),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                          'Update Profile', style: TextStyle(color: Colors
+                          .white, fontWeight: FontWeight.bold, fontSize: 15)),
                     ),
                   ),
                 ),
@@ -96,18 +103,26 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
   }
 
   void _updateProfile() {
-    // Fetch values from controllers and update profile information
     String name = _nameController.text;
     String contactDetails = _contactController.text;
     String location = _locationController.text;
     String businessDetails = _businessDetailsController.text;
 
-    // Here you can implement your logic to update the profile information
-    // For now, let's just print the values
-    print('Name: $name');
-    print('Contact Details: $contactDetails');
-    print('Location: $location');
-    print('Business Details: $businessDetails');
+    // Access Firestore instance
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // Add data to 'tow_user' collection
+    firestore.collection('tow_user').add({
+      'name': name,
+      'contactDetails': contactDetails,
+      'location': location,
+      'businessDetails': businessDetails,
+    }).then((value) {
+      // Data added successfully
+      print('Profile information added to Firestore');
+    }).catchError((error) {
+      // Error handling
+      print('Failed to add profile information: $error');
+    });
   }
 }
-

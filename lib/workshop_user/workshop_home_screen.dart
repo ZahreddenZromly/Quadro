@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/workshop_user/profile.dart';
 import 'package:quadro/workshop_user/review.dart';
-
-import '../screens/profile_screen.dart';
-import '../store_system/intro_page.dart';
-import '../towing_user/availability_page.dart';
 import '../towing_user/dashboard_card.dart';
-import '../towing_user/overview_page.dart';
-import '../towing_user/profile_settings.dart';
-import '../towing_user/requests.dart';
-import '../screens/Workshop_Details_screen.dart';
 import 'appointments.dart';
 import 'overview.dart';
-// Navigator.push(   // Myworkshop
-//           context,
-//           MaterialPageRoute(
-//             builder: (context) => const WorkshopDetailsPage(),
-//           ),
+
 
 class MyWorkShop extends StatelessWidget {
   const MyWorkShop({super.key});
@@ -115,28 +103,12 @@ class DashboardScreen extends StatelessWidget {
                   )
                 ],
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: WorkshopCards(
-                      call: () =>  Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => WorkshopProfile())),
-                      title: "messages",
-                      iconData: Icons.message,
-                    ),
-                  ),
-                  WorkshopCards(
-                    title: "Store",
-                    iconData: Icons.store,
-                    call: () =>  Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => IntroPage())),
-                  ),
-                ],
+              WorkshopCards(
+                call: () =>  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WorkshopProfile())),
+                title: "messages",
+                iconData: Icons.message,
               )
 
             ],

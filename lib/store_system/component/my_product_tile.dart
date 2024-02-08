@@ -17,12 +17,12 @@ class MyProductTile extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text("Add this item to your cart?"),
+        content: const Text("Add this item to your cart?"),
         actions: [
           // cancel button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           // yes button
           MaterialButton(
@@ -32,7 +32,7 @@ class MyProductTile extends StatelessWidget {
               context.read<Shop>().addToCart(product);
             },
 
-            child: Text("Yes"),
+            child: const Text("Yes"),
           ),
         ],
       ),
@@ -95,7 +95,7 @@ class MyProductTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'LY' + product.price.toStringAsFixed(2),
+                'LY${product.price.toStringAsFixed(2)}',
               ),
               //add a cart button
               Container(
@@ -105,7 +105,7 @@ class MyProductTile extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: () => addToCart(context),
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                 ),
               )
             ],

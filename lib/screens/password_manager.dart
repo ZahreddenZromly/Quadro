@@ -16,6 +16,7 @@ class _PasswordManagerState extends State<PasswordManager> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(

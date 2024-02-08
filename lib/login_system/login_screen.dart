@@ -1,41 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quadro/components/my_button.dart';
 import 'package:quadro/components/my_text_feild.dart';
-import 'package:quadro/login_system/auth_service.dart';
-
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
 
-  const LoginPage({super.key, required this.onTap});
+  const LoginPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // text controller
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign in user
   void signIn() async {
-    // get the auth service
-    final authService = Provider.of<AuthService>(context, listen: false);
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
     try {
-      await authService.signInWithEmailandPassword(
-        emailController.text,
-        passwordController.text,
+      // Sign in with email and password
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
       );
-    } catch (e) {
+
+      // Retrieve the user's document based on email
+      DocumentSnapshot userDoc = await _firestore
+          .collection('normal_user')
+          .doc(userCredential.user!.uid)
+          .get();
+
+      // Check if the user exists in the normal_user collection
+      if (userDoc.exists) {
+        Navigator.pushReplacementNamed(context, '/navbar');
+        return;
+      }
+
+      // Retrieve the user's document based on email
+      userDoc = await _firestore
+          .collection('workshop_user')
+          .doc(userCredential.user!.uid)
+          .get();
+
+      // Check if the user exists in the workshop_user collection
+      if (userDoc.exists) {
+        Navigator.pushReplacementNamed(context, '/workshop_home_screen');
+        return;
+      }
+
+      // Retrieve the user's document based on email
+      userDoc = await _firestore
+          .collection('tow_user')
+          .doc(userCredential.user!.uid)
+          .get();
+
+      // Check if the user exists in the tow_user collection
+      if (userDoc.exists) {
+        Navigator.pushReplacementNamed(context, '/request_towing');
+        return;
+      }
+
+      // If user doesn't exist in any collection, show error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Colors.teal,
-          content: Text(
-            e.toString(),
-          ),
+          backgroundColor: Colors.red,
+          content: Text("User not found"),
+        ),
+      );
+
+    } catch (e) {
+      // Handle sign-in errors
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(e.toString()),
         ),
       );
     }
@@ -44,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(
@@ -52,14 +95,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 const SizedBox(height: 50),
-                //Logo
                 Icon(
                   Icons.lock,
                   size: 100,
                   color: Colors.teal[800],
                 ),
                 const SizedBox(height: 50),
-                //welcome back message
                 const Text(
                   'Welcome back you`ve been missed',
                   style: TextStyle(
@@ -67,34 +108,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 25),
-                //email text feild
                 MyTextFeild(
                   controller: emailController,
                   hintText: "Email",
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-
-                //password textfeild
-
                 MyTextFeild(
                   controller: passwordController,
-                  hintText: "Paswword",
+                  hintText: "Password",
                   obscureText: true,
                 ),
-
                 const SizedBox(height: 25),
-
-                //sign in button
                 MyButton(
                   onTap: signIn,
                   text: 'LogIn',
                 ),
-
                 const SizedBox(height: 50),
-
-                //not a member register now
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -102,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child:  const Text(
+                      child: const Text(
                         'SignUp Now',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../screens/home_screen.dart';
-
 
 
 
@@ -41,27 +39,15 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
     'Integrated Tow Truck',
   ];
   List<Map<String, String>> towingServices = [
-    {'name': 'Towing Service Provider A', 'location': 'Tripoli', 'contact': '091-555-1234','price': '50 LYD'},
-    {'name': 'Towing Service Provider B', 'location': 'Banghazi', 'contact': '092-555-5678', 'price': '50 LYD'},
-    {'name': 'Towing Service Provider C', 'location': 'Tripoli', 'contact': '091-555-9012', 'price': '50 LYD'},
+    {'name': 'Towing Service Provider A', 'location': '123 Main St', 'contact': '555-1234'},
+    {'name': 'Towing Service Provider B', 'location': '456 Elm St', 'contact': '555-5678'},
+    {'name': 'Towing Service Provider C', 'location': '789 Oak St', 'contact': '555-9012'},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back), // You can change the icon as needed
-          onPressed: () {
-            // Add your onPressed functionality here
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
-          },
-        ),
-      ),
+      appBar: AppBar(),
       body: Stack(
         children: [ ListView(
           children: [
@@ -240,13 +226,11 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                       child: ListTile(
                         title: Text(service['name']!),
-                        trailing: Icon(Icons.car_crash,color: Colors.teal,size: 40),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Location: ${service['location']}'),
                             Text('Contact: ${service['contact']}'),
-                            Text('Price: ${service['price']}'),
                           ],
                         ),
                         onTap: () {
