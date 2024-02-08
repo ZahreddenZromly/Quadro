@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/workshop_user/profile.dart';
 import 'package:quadro/workshop_user/review.dart';
+import '../store_system/intro_page.dart';
 import '../towing_user/dashboard_card.dart';
 import 'appointments.dart';
 import 'overview.dart';
@@ -103,12 +104,28 @@ class DashboardScreen extends StatelessWidget {
                   )
                 ],
               ),
-              WorkshopCards(
-                call: () =>  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => WorkshopProfile())),
-                title: "messages",
-                iconData: Icons.message,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: WorkshopCards(
+                      call: () =>  Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => WorkshopProfile())),
+                      title: "messages",
+                      iconData: Icons.message,
+                    ),
+                  ),
+                  WorkshopCards(
+                    title: "Store",
+                    iconData: Icons.store,
+                    call: () =>  Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => IntroPage())),
+                  ),
+                ],
               )
 
             ],
