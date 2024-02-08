@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // If user doesn't exist in any collection, show error
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Colors.red,
           content: Text("User not found"),
         ),
