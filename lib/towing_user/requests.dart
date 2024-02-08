@@ -3,7 +3,6 @@ class ServiceRequest {
   String userName;
   String contactNumber;
   String assistanceType;
-
   ServiceRequest({
     required this.userName,
     required this.contactNumber,
