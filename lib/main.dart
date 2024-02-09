@@ -14,6 +14,7 @@ import 'package:quadro/themes/light_mode.dart';
 import 'package:quadro/towing_user/towing_cars_owner.dart';
 import 'package:quadro/workshop_user/workshop_home_screen.dart';
 import '../firebase/firebase_options.dart';
+import 'components/payment_page.dart';
 import 'cubits/appointments/appointments_cubit.dart';
 import 'cubits/towing_request/towing_cubit.dart';
 
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const AuthGate(),
+      home:  AuthGate(),
       theme: lightMode,
       routes: {
         '/navbar': (context) => const NavBar(),

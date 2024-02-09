@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/home_screen.dart';
+
 
 
 
@@ -39,9 +41,9 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
     'Integrated Tow Truck',
   ];
   List<Map<String, String>> towingServices = [
-    {'name': 'Towing Service Provider A', 'location': '123 Main St', 'contact': '555-1234'},
-    {'name': 'Towing Service Provider B', 'location': '456 Elm St', 'contact': '555-5678'},
-    {'name': 'Towing Service Provider C', 'location': '789 Oak St', 'contact': '555-9012'},
+    {'name': 'Towing Service Provider A', 'location': '123 Main St', 'contact': '555-1234', 'price':'50 LYD'},
+    {'name': 'Towing Service Provider B', 'location': '456 Elm St', 'contact': '555-5678','price':'50 LYD'},
+    {'name': 'Towing Service Provider C', 'location': '789 Oak St', 'contact': '555-9012', 'price':'50 LYD'},
   ];
 
   @override
@@ -231,6 +233,7 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
                           children: [
                             Text('Location: ${service['location']}'),
                             Text('Contact: ${service['contact']}'),
+                            Text('price: ${service['price']}'),
                           ],
                         ),
                         onTap: () {
@@ -261,11 +264,35 @@ class _RequestTowingFormState extends State<RequestTowingForm> {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
                   ),
                   onPressed: () {
-                    // Implement towing request logic here
-                    print('Issue: $selectedIssue');
-                    print('Location: $location');
-                    print('Additional Information: $additionalInfo');
-                    print('Selected Towing Service Provider: $selectedTowingService');
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Confirm Towing Request"),
+                          content: Text("Are you sure you want to request towing?"),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text("Cancel"),
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Close the dialog
+                              },
+                            ),
+                            TextButton(
+                              child: Text("Confirm"),
+                              onPressed: () {
+                                // Perform action when confirmed, such as sending request
+                                // For demonstration, just closing the dialog
+                                Navigator.of(context).push (
+                                    MaterialPageRoute(
+                                    builder: (BuildContext context) => HomeScreen(),),
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
                   },
                   child: Text(
                     'Request Towing',
