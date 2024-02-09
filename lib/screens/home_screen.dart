@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               icon: const Icon(
-                Icons.category,
+                Icons.notifications_active,
                 color: Colors.white,
               ),
             ),
@@ -52,6 +52,8 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+
+
           const SizedBox(height: 8),
           Container(
             height: 180, // Adjust the height according to your need
@@ -68,19 +70,28 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Center(
-              child: Text(
-                'QUADRO',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/workshops/welcome.jpg', // Replace 'your_image.png' with your image path
+                 fit:BoxFit.cover,
+                width: double.infinity, // Set the image width to the container width
+                height: double.infinity,// Adjust the width of the image
               ),
             ),
           ),
           const SizedBox(height: 8),
           const QSearchBar(),
           const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Workshops: ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              ],
+            ),
+          ),
           Expanded(
             child: CustomScrollView(
               slivers: [

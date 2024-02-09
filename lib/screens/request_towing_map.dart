@@ -1,98 +1,78 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
-class RequestTowingMap extends StatefulWidget {
+class TowingLocator extends StatefulWidget {
   @override
-  State<RequestTowingMap> createState() => _RequestTowingMapState();
+  _TowingLocatorState createState() => _TowingLocatorState();
 }
 
-class _RequestTowingMapState extends State<RequestTowingMap> {
-  CameraPosition initialCameraPosition = CameraPosition(
-    target: LatLng(37.42796133, -122.081089), // Placeholder initial location
-    zoom: 16.0,
-  );
-  Marker userLocationMarker = Marker(
-    markerId: MarkerId('user_location'),
-    position: LatLng(37.42796133, -122.081089), // Placeholder initial location
-    icon: BitmapDescriptor.defaultMarker,
-  );
-  Set<Marker> markers = {};
-  bool _locationPermissionGranted = false;
+class _TowingLocatorState extends State<TowingLocator> {
+  GoogleMapController? _mapController;
+  Set<Marker> _markers = Set();
+  LatLng _initialLocation = LatLng(32.867127, 13.251609); // Initial location
+
+  void _onMarkerDragEnd(LatLng newPosition) {
+    // Handle the new marker position (e.g., save it to a variable)
+    print('New marker position: $newPosition');
+  }
 
   @override
   void initState() {
     super.initState();
-    _checkLocationPermission();
+    _addMarker();
   }
 
-  Future<void> _checkLocationPermission() async {
-    // Handle location permission request for Android (if applicable)
-    Location location = Location();
-    bool hasPermission = await location.serviceEnabled();
-    PermissionStatus permissionStatus = await location.hasPermission();
-    if (!hasPermission) {
-      permissionStatus = await location.requestPermission();
-    }
-    _locationPermissionGranted = permissionStatus == PermissionStatus.granted;
-    setState(() {});
-  }
-
-  Future<void> _onMapCreated(GoogleMapController controller) async {
-    if (_locationPermissionGranted) {
-      Location location = Location();
-      LatLng userLocation = (await location.getLocation()) as LatLng;
-
-      setState(() {
-        initialCameraPosition =
-            CameraPosition(target: userLocation, zoom: 16.0);
-        userLocationMarker = Marker(
-          markerId: MarkerId('user_location'),
-          position: userLocation,
-          icon: BitmapDescriptor.defaultMarker,
-        );
-        markers = Set<Marker>.from([userLocationMarker]);
-      });
-
-      location.onLocationChanged.listen((newLocation) {
-        setState(() {
-          userLocationMarker = Marker(
-            markerId: MarkerId('user_location'),
-            position: LatLng(newLocation.latitude!, newLocation.longitude!),
-            icon: BitmapDescriptor.defaultMarker,
-          );
-          markers = Set<Marker>.from([userLocationMarker]);
-          initialCameraPosition = CameraPosition(
-            target: LatLng(newLocation.latitude!, newLocation.longitude!),
-            zoom: 16.0,
-          );
-        });
-      });
-    }
+  void _addMarker() {
+    _markers.add(Marker(
+      markerId: MarkerId('draggableMarker'),
+      position: LatLng(32.867127, 13.251609),
+      draggable: true, // Make the marker draggable
+      onDragEnd: _onMarkerDragEnd, // Handle marker drag end
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Request Towing Map'),
-        ),
-        body: Stack(
-          children: [
-            GoogleMap(
-              myLocationEnabled: _locationPermissionGranted,
-              zoomControlsEnabled: true,
-              initialCameraPosition: initialCameraPosition,
-              onMapCreated: _onMapCreated,
-              markers: markers,
-            ),
-            if (!_locationPermissionGranted)
-              Center(
-                child: Text('Location permission not granted'),
+    return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(const EdgeInsets.all(4)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-          ],
+              minimumSize: MaterialStateProperty.all(const Size(250, 60.0)),
+              // iconColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Colors.teal),
+            ),
+            child: const Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+      appBar:
+      AppBar(centerTitle: true, title: Text('Draggable Marker Example')),
+      body: GoogleMap(
+        markers: _markers,
+        initialCameraPosition: CameraPosition(
+          target: LatLng(32.867127, 13.251609),
+          zoom: 14.0,
         ),
+        onMapCreated: (controller) {
+          _mapController = controller;
+        },
       ),
     );
   }

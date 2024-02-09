@@ -237,7 +237,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
 
         backgroundColor:
-            selectedUserType == type ? Colors.teal : Colors.grey.shade300,
+            selectedUserType == type ? Colors.teal : Colors.white,
         side: const BorderSide(color: Colors.teal),
       ),
     );

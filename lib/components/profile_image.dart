@@ -29,8 +29,7 @@ class ProfileImage extends StatelessWidget {
           const ImagePickers(),
           const SizedBox(height: 20,),
 
-          const SizedBox(height: 20,),
-          const ImagePickers(),
+
 
         ],
       ),

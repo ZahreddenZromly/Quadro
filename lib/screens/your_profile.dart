@@ -19,34 +19,72 @@ class _YourProfileState extends State<YourProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               ProfileImage(title: "Your Profile"),
               const SizedBox(height: 20,),
-              TextField(
-                controller: userNameController,
-                decoration: const InputDecoration(
-                  labelText: 'Username', // Label text
-                  hintText: 'Enter your username', // Hint text
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: userNameController,
+                  decoration:   InputDecoration(
+                    labelText: 'Username', // Label text
+                    hintText: 'Enter your username',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    filled: true,// Hint text
+                  ),
                 ),
               ),
               const SizedBox(height: 20,),
-              TextField(
-                controller: phoneNumberController,
-                decoration: const InputDecoration(
-                  labelText: 'Phone Number',
-                  hintText: 'Enter your phone number',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+
+                  controller: phoneNumberController,
+                  decoration:   InputDecoration(
+                    labelText: 'Phone Number',
+                    hintText: 'Enter your phone number',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    filled: true,
+                  ),
                 ),
               ),
               const SizedBox(height: 20,),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'Enter your email',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+
+                  controller: emailController,
+                  decoration:   InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'Enter your email',
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+
                 ),
               ),
 

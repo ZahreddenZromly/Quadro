@@ -11,6 +11,7 @@ import 'package:quadro/components/navbar.dart';
 import 'package:quadro/cubits/towing_request/towing_cubit.dart';
 import 'package:quadro/cubits/towing_request/towing_request_model.dart';
 import 'package:quadro/cubits/towing_request/towing_state.dart';
+import 'package:quadro/screens/request_towing_map.dart';
 
 class RequestTowingForm extends StatelessWidget {
   RequestTowingForm({super.key, required this.state});
@@ -289,61 +290,17 @@ class RequestTowingForm extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () => getImage(),
-                  child: Container(
-                    width: 350,
-                    // height: 50,
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.black38),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Column(
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Upload Car Images',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            Icon(Icons.add_a_photo_outlined),
-                          ],
-                        ),
-                        if (_image != null)
-                          Row(
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                margin: EdgeInsets.only(top: 12),
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.circular(0),
-                                  color: Colors.teal,
-                                ),
-                                child: ClipRRect(
-                                  // borderRadius: BorderRadius.circular(12),
-                                  child: Image.file(
-                                    _image!,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
+
               ],
             ),
             // if (_image != null) Image.file(_image!),
             const SizedBox(height: 16),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TowingLocator()));
+              },
               child: Container(
                 width: 350,
                 height: 50,

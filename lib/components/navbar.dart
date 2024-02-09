@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
     // Login(),
-    const AppointmentsScreen(),
+
     const HomeScreen(),
     const ChatDetails(),
     const IntroPage(),
@@ -60,10 +60,7 @@ class _NavBarState extends State<NavBar> {
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               tabs: [
-                const GButton(
-                  icon: Icons.calendar_month,
-                  text: 'Appointments',
-                ),
+
                 const GButton(
                   icon: Icons.home,
                   text: 'Home',
@@ -81,8 +78,8 @@ class _NavBarState extends State<NavBar> {
                   iconColor: Colors.teal,
                   iconActiveColor: Colors.white,
                   textColor: Colors.white,
-                  icon: Icons.emergency,
-                  text: 'Help',
+                  icon: Icons.car_crash,
+                  text: 'towing',
                   border: Border.all(
                     color: Colors.teal,
                     width: 1.5,

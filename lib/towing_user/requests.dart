@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quadro/towing_user/towing_car_map.dart';
 class ServiceRequest {
   String userName;
   String contactNumber;
@@ -86,9 +87,11 @@ class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
                         icon: const Icon(Icons.map),
                         color: Colors.blue,
                         onPressed: () {
-                          // Handle opening the location in Google Maps
-                          //_launchMaps(request.location);
-                        },
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RequestTowingMap()));
+
+                            },
                       ),
                     ],
                   ),

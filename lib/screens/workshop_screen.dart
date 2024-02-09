@@ -4,6 +4,8 @@ import 'package:quadro/screens/request_appointment_screen.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../towing_user/workshop_location.dart';
+
 class WorkshopScreen extends StatelessWidget {
   WorkshopScreen({super.key});
   final List<Chip> chips = [
@@ -321,7 +323,11 @@ class WorkshopScreen extends StatelessWidget {
                                       children: [
                                         const Icon(Icons.location_on),
                                         TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(builder: (context) => WrokshopLocation()));
+                                            },
                                             child:
                                                 const Text('AinZara/Tripoli')),
                                       ],
