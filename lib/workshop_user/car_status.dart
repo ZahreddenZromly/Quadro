@@ -19,7 +19,7 @@ class MaintenancePage extends StatefulWidget {
 
 class _MaintenancePageState extends State<MaintenancePage> {
   // Example data for car status
-  String currentStatus = 'In Progress';
+  String currentStatus = 'In Progress';//Complted Closed
   String maintenanceDetails =
       'Oil change and filter replacement. Estimated completion time: 2 hours.';
   List<String> comments = [];
@@ -29,7 +29,8 @@ class _MaintenancePageState extends State<MaintenancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Car Maintenance Tracker'),
+        backgroundColor: Colors.teal,
+        title: Text('My Car',style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

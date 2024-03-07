@@ -6,6 +6,7 @@ import 'package:quadro/components/navbar.dart';
 import 'package:quadro/login_system/auth_gate.dart';
 import 'package:quadro/login_system/auth_service.dart';
 import 'package:quadro/login_system/login_or_register.dart';
+import 'package:quadro/screens/splash.dart';
 import 'package:quadro/store_system/cart-screen.dart';
 import 'package:quadro/store_system/intro_page.dart';
 import 'package:quadro/store_system/models/shop.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home:  AuthGate(),
+      home:  SplashScreen(),
       theme: lightMode,
       routes: {
         '/navbar': (context) => const NavBar(),

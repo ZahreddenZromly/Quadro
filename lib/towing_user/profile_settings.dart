@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quadro/towing_user/towing_cars_owner.dart';
 
 
 
@@ -84,8 +85,11 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                       elevation: 10,
                     ),
                     onPressed: () {
-                      // Update profile information
-                      _updateProfile();
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => MyTowing(),
+                          ),
+                      );
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),

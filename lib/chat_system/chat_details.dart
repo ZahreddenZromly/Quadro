@@ -33,12 +33,7 @@ class _ChatDetailsState extends State<ChatDetails> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: signOut,
-            icon: const Icon(Icons.logout),
-          )
-        ],
+
       ),
       body: _buildUserList(),
     );

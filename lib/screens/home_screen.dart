@@ -6,6 +6,8 @@ import 'package:quadro/components/workshop_card.dart';
 import 'package:quadro/screens/categories_screen.dart';
 import 'package:quadro/screens/profile_screen.dart';
 
+import '../workshop_user/car_status.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key});
 
@@ -26,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CategoriesScreen(),
+                    builder: (context) =>   CarStatus(),
                   ),
                 );
               },

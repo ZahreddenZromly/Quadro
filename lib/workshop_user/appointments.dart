@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'car_status.dart';
+
 
 
 class Appointments extends StatelessWidget {
@@ -34,6 +36,11 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
     setState(() {
       appointment.status = status;
     });
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (BuildContext context) => CarStatus(),
+      ),
+    );
   }
 
   @override

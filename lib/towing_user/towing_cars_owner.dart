@@ -3,6 +3,7 @@ import 'package:quadro/towing_user/profile_settings.dart';
 import 'package:quadro/towing_user/requests.dart';
 
 import '../components/workshop_card.dart';
+import '../login_system/login_or_register.dart';
 import 'availability_page.dart';
 import 'dashboard_card.dart';
 import 'overview_page.dart';
@@ -29,6 +30,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.teal,
+          leading: IconButton(
+            icon: Icon(Icons.logout), // Add your desired icon here
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginOrRegister(),
+                ),
+              );// Add onPressed logic if you want the icon to be interactive
+            },
+          ),
         ),
        body: ListView(
          children:[

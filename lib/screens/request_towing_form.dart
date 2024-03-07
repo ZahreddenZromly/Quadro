@@ -13,6 +13,9 @@ import 'package:quadro/cubits/towing_request/towing_request_model.dart';
 import 'package:quadro/cubits/towing_request/towing_state.dart';
 import 'package:quadro/screens/request_towing_map.dart';
 
+import '../components/payment_page.dart';
+import 'home_screen.dart';
+
 class RequestTowingForm extends StatelessWidget {
   RequestTowingForm({super.key, required this.state});
   // final db = FirebaseFirestore.instance;
@@ -24,6 +27,27 @@ class RequestTowingForm extends StatelessWidget {
   String? _selectedType;
   List<String>? brands;
   List<String>? models;
+  String _currentPaymentMethod = 'نقداً';
+  List<String> _paymentOptions = [
+    'نقداً',
+    'محفظة',
+    'سداد',
+    'البطاقة المصرفية اونلاين',
+    'ادفعلي',
+    'تداول',
+    'موبي كاش'
+  ];
+
+  List<IconData> _paymentIcons = [
+    Icons.money,
+    Icons.account_balance_wallet,
+    Icons.payment,
+    Icons.credit_card,
+    Icons.payment,
+    Icons.attach_money,
+    Icons.payment
+  ];
+
 
   final TextEditingController descriptionController = TextEditingController();
   File? _image;
@@ -327,56 +351,128 @@ class RequestTowingForm extends StatelessWidget {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                cubit.createTowingRequest(
-                  towingType: _selectedType,
-                  model: selectedModel,
-                  description: descriptionController.text,
-                );
-                showDialog(
+                showModalBottomSheet(
                   context: context,
-                  builder: (context) => AlertDialog(
-                    backgroundColor: Colors.grey[100],
-                    actions: [
-                      TextButton(
-                          onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NavBar(),
-                                ),
-                              ),
-                          child: const Text(
-                            'Done',
-                            style: TextStyle(fontSize: 17),
-                          )),
-                    ],
-                    title: const Center(
-                        child: Text(
-                      'Request Submitted.',
-                      style: TextStyle(fontSize: 23),
-                    )),
-                    contentPadding: EdgeInsets.all(20),
-                  ),
+                  builder: (BuildContext context) {
+                    return PaymentSheet();
+                  },
                 );
               },
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(const EdgeInsets.all(4)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal, // Change the background color of the button
+              ),
+                child: Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
-                minimumSize: MaterialStateProperty.all(const Size(362, 60.0)),
-                // iconColor: MaterialStateProperty.all(Colors.white),
-                backgroundColor: MaterialStateProperty.all(Colors.teal),
-              ),
-              child: const Text(
-                'Submit',
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
+
+
             ),
           ],
         ),
       ),
+    );
+  }
+}
+class PaymentSheet extends StatefulWidget {
+  @override
+  _PaymentSheetState createState() => _PaymentSheetState();
+}
+
+class _PaymentSheetState extends State<PaymentSheet> {
+  String _currentPaymentMethod = 'نقداً';
+  List<String> _paymentOptions = [
+    'نقداً',
+    'محفظة',
+    'سداد',
+    'البطاقة المصرفية اونلاين',
+    'ادفعلي',
+    'تداول',
+    'موبي كاش'
+  ];
+
+  List<IconData> _paymentIcons = [
+    Icons.money,
+    Icons.account_balance_wallet,
+    Icons.payment,
+    Icons.credit_card,
+    Icons.payment,
+    Icons.attach_money,
+    Icons.payment
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      maxChildSize: 1,
+      minChildSize: 0.5,
+      builder: (BuildContext context, ScrollController scrollController) {
+        return Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: _paymentOptions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                      elevation: 5,
+                      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        leading: Icon(_paymentIcons[index]),
+                        title: Text(
+                          _paymentOptions[index],
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        trailing: _currentPaymentMethod ==
+                            _paymentOptions[index]
+                            ? CircleAvatar(
+                          backgroundColor: Colors.teal,
+                          radius: 10,
+                          child: Icon(
+                            Icons.check,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        )
+                            : null,
+                        onTap: () {
+                          setState(() {
+                            _currentPaymentMethod = _paymentOptions[index];
+                          });
+                        },
+                        selected: _currentPaymentMethod ==
+                            _paymentOptions[index],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.teal), // Change the background color here
+                ),
+                onPressed: () {
+                  // Implement logic for confirming the selection
+                  print('Selected payment method: $_currentPaymentMethod');
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => NavBar(),
+                      ),);
+                },
+                child: Text('Confirm', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

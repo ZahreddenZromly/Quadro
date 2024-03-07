@@ -67,26 +67,6 @@ class _YourProfileState extends State<YourProfile> {
                 ),
               ),
               const SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-
-                  controller: emailController,
-                  decoration:   InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter your email',
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-
-                ),
-              ),
 
               ElevatedButton(
                 onPressed: () {

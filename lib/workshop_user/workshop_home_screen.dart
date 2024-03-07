@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/workshop_user/profile.dart';
 import 'package:quadro/workshop_user/review.dart';
+import '../chat_system/chat_details.dart';
+import '../login_system/login_or_register.dart';
+import '../screens/chat-screen.dart';
 import '../store_system/intro_page.dart';
 import '../towing_user/dashboard_card.dart';
 import 'appointments.dart';
@@ -22,6 +25,16 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.logout), // Add your desired icon here
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginOrRegister(),
+                ),
+            );// Add onPressed logic if you want the icon to be interactive
+          },
+        ),
         backgroundColor: Colors.teal,
       ),
       body: ListView(
@@ -113,7 +126,7 @@ class DashboardScreen extends StatelessWidget {
                     child: WorkshopCards(
                       call: () =>  Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => WorkshopProfile())),
+                          MaterialPageRoute(builder: (context) => ChatDetails())),
                       title: "messages",
                       iconData: Icons.message,
                     ),

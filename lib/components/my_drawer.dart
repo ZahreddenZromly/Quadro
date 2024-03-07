@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quadro/components/my_list_tile.dart';
 
+import '../screens/home_screen.dart';
+import 'navbar.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
@@ -50,8 +53,14 @@ class MyDrawer extends StatelessWidget {
             child: MyListTile(
               text: "Exit",
               icon: Icons.logout,
-              onTap: () => Navigator.pushNamedAndRemoveUntil(
-                  context,  '/navbar', (route) => false),
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => NavBar(),
+                  ),
+                );
+
+              },
             ),
           ),
         ],

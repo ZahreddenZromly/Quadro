@@ -23,12 +23,12 @@ class ViewServiceRequestsPage extends StatefulWidget {
 class _ViewServiceRequestsPageState extends State<ViewServiceRequestsPage> {
   List<ServiceRequest> serviceRequests = [
     ServiceRequest(
-      userName: 'User1',
+      userName: 'Ahmed',
       contactNumber: '091-0097738',
       assistanceType: 'Flat Tire',
     ),
     ServiceRequest(
-      userName: 'User2',
+      userName: 'mohamed',
       contactNumber: '092-5713391',
       assistanceType: 'Battery Jump',
     ),
